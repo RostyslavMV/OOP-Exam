@@ -89,6 +89,60 @@ namespace OOP_Exam
         public override void Reset()
         {
             this.Position = -1;
+            current = null;
+        }
+    }
+
+    class CircularListOperator<T> : Iterator
+    {
+        private SLcircularList<T> list;
+        private ListNode<T> current;
+
+        private int Position = -1;
+
+        public CircularListOperator(SLcircularList<T> list)
+        {
+            this.list = list;
+        }
+        public override object Current()
+        {
+            return current;
+        }
+
+        public override int Key()
+        {
+            return this.Position;
+        }
+
+        public override bool MoveNext()
+        {
+            if (list.StartNode == null)
+            {
+                return false;
+            }          
+            if (current == null)
+            {
+                current = list.StartNode;
+                Position = 0;
+                return true;
+            }
+            if (current.Next != list.StartNode)
+            {
+                current = current.Next;
+                Position++;
+                return true;
+            }
+            if (current.Next == list.StartNode)
+            {
+                return false;
+            }
+            return false;
+        }
+
+        public override void Reset()
+        {
+            this.Position = -1;
+            current = null;
         }
     }
 }

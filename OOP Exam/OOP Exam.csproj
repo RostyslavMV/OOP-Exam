@@ -58,6 +58,7 @@
     <Compile Include="NodeColor.cs" />
     <Compile Include="RedBlackTree.cs" />
     <Compile Include="RedBlackTreeNode.cs" />
+    <Compile Include="SLCircularList.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
