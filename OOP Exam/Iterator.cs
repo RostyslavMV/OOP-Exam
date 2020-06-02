@@ -24,7 +24,7 @@ namespace OOP_Exam
         public abstract void Reset();
     }
 
-    abstract class IteratorAggregate : IEnumerable
+    public abstract class IteratorAggregate : IEnumerable
     {
         // Return current Iterator/IteratorAggregate for the implementing
         // object
