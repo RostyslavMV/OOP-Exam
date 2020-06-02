@@ -64,6 +64,50 @@ namespace OOP_Exam
             }
         }
 
+        public void AddToBegin(T data)
+        {
+            ListNode<T> newNode = new ListNode<T>(data, StartNode);
+            if (StartNode == null)
+            {
+                StartNode = newNode;
+                StartNode.SetNext(StartNode);
+                LastNode = StartNode;
+            }
+            else
+            {
+                StartNode = newNode;
+                LastNode.SetNext(StartNode);
+            }
+        }
+
+        public bool AddAfter(T prevData, T data)
+        {
+            ListNode<T> node = Search(prevData);
+            if (StartNode == null || node == null)
+                return false;
+            ListNode<T> currentNode = StartNode;
+            while (currentNode != LastNode)
+            {
+                if (currentNode == node)
+                {
+                    ListNode<T> newNode = new ListNode<T>(data, currentNode.Next);
+                    currentNode.SetNext(newNode);
+                    if (LastNode == currentNode)
+                    {
+                        LastNode = newNode;
+                    }
+                }
+                currentNode = currentNode.Next;
+            }
+            if (currentNode == LastNode)
+            {
+                ListNode<T> newNode = new ListNode<T>(data, StartNode);
+                LastNode.SetNext(newNode);
+                LastNode = newNode;
+            }
+            return true;
+        }
+
         public void Remove(T data)
         {
             if (StartNode == null)

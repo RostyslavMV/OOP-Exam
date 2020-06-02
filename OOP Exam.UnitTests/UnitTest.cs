@@ -23,7 +23,7 @@ namespace OOP_Exam.UnitTests
             for (int i = 0; i < 1000; i++)
             {
                 if (i != 17 && i != 93)
-                    Assert.AreEqual(redBlackTree.Search(i).Data, new RedBlackTreeNode<int>(i).Data);
+                    Assert.AreEqual(redBlackTree.Search(i).Data, i);
                 else
                 {
                     Assert.AreEqual(redBlackTree.Search(i), null);
@@ -81,7 +81,30 @@ namespace OOP_Exam.UnitTests
             for (int i = 0; i < 100; i++)
             {
                 if (i != 15 && i != 94)
-                    Assert.AreEqual(list.Search(i).Data, new RedBlackTreeNode<int>(i).Data);
+                    Assert.AreEqual(list.Search(i).Data, i);
+                else
+                {
+                    Assert.AreEqual(list.Search(i), null);
+                }
+            }
+        }
+        [TestMethod]
+        public void SLcircularList_AddToBeginSearchRemove()
+        {
+            // Arrange
+            var list = new SLcircularList<int>();
+            // Act
+            for (int i = 0; i < 100; i++)
+            {
+                list.AddToBegin(i);
+            }
+            list.Remove(15);
+            list.Remove(94);
+            // Assert
+            for (int i = 0; i < 100; i++)
+            {
+                if (i != 15 && i != 94)
+                    Assert.AreEqual(list.Search(i).Data, i);
                 else
                 {
                     Assert.AreEqual(list.Search(i), null);
@@ -90,7 +113,7 @@ namespace OOP_Exam.UnitTests
         }
 
         [TestMethod]
-        public void SLcircularList_SmallListTests()
+        public void SLcircularList_SmallList()
         {
             // Arrange
             var list1 = new SLcircularList<int>(1);
@@ -114,6 +137,42 @@ namespace OOP_Exam.UnitTests
             Assert.AreEqual(list1.StartNode, null);
             Assert.AreEqual(list2.StartNode, null);
             Assert.AreEqual(list3.StartNode, null);
+        }
+
+        [TestMethod]
+        public void SLcircularList_AddAfter()
+        {
+            // Arrange
+            var list = new SLcircularList<int>(1);
+            // Act
+            for (int i = 0; i < 100; i++)
+            {
+                list.AddAfter(1, i);
+            }
+            for (int i = 100; i < 200; i++)
+            {
+                list.AddAfter(35, i);
+            }
+            // Assert
+            for (int i = 0; i < 200; i++)
+            {
+                Assert.AreEqual(list.Search(i).Data, i);
+            }
+            Assert.IsFalse(list.AddAfter(350, 4));
+        }
+
+        [TestMethod]
+        public void SLcircularList_AddAfterSmallList()
+        {
+            // Arrange
+            var list = new SLcircularList<int>(1);
+            // Act
+            list.AddAfter(1, 2);
+            list.AddAfter(1, 3);
+            // Assert
+            Assert.AreEqual(list.StartNode.Data, 1);
+            Assert.AreEqual(list.StartNode.Next.Data, 3);
+            Assert.AreEqual(list.StartNode.Next.Next.Data, 2);
         }
     }
 
