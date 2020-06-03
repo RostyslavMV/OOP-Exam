@@ -223,24 +223,105 @@ namespace OOP_Exam.UnitTests
     }
 
     [TestClass]
+    public class SortsCompareTest
+    {
+        [TestMethod]
+        public void InsertionSort_Test()
+        {
+            // Arrange
+            var collectionInsertion = new Collection<int>();
+            var collectionMerge = new Collection<int>();
+            var collectionHeap = new Collection<int>();
+            Random random = new Random();
+            // Act
+
+            for (int i = 0; i < 1000; i++)
+            {
+                var number = random.Next(-10000, 10000);
+                collectionInsertion.Add(number);
+                collectionMerge.Add(number);
+                collectionHeap.Add(number);
+            }
+            InsertionSort<int>.Sort(collectionInsertion);
+            collectionMerge = MergeSort<int>.Sort(collectionMerge);
+            HeapSort<int>.Sort(collectionHeap);
+            // Assert
+            for (int i = 0; i < collectionInsertion.Count; i++)
+            {
+                Assert.AreEqual(collectionInsertion[i], collectionMerge[i]);
+                Assert.AreEqual(collectionHeap[i], collectionMerge[i]);
+            }
+        }
+    }
+    [TestClass]
     public class InsertionSortTests
     {
         [TestMethod]
         public void InsertionSort_Test()
         {
             // Arrange
-            var collection1 = new Collection<int>();
+            var collection = new Collection<int>();
             Random random = new Random();
             // Act
 
             for (int i = 0; i < 1000; i++)
             {
-                collection1.Add(random.Next(-10000, 10000));
+                collection.Add(random.Next(-10000, 10000));
             }
-            InsertionSort<int>.Sort(collection1);
+            InsertionSort<int>.Sort(collection);
             // Assert
             int prevElement = -10001;
-            foreach (var element in collection1)
+            foreach (var element in collection)
+            {
+                Assert.IsTrue(element >= prevElement);
+                prevElement = element;
+            }
+        }
+    }
+    [TestClass]
+    public class MergeSortTests
+    {
+        [TestMethod]
+        public void MergeSort_Test()
+        {
+            // Arrange
+            var collection = new Collection<int>();
+            Random random = new Random();
+            // Act
+
+            for (int i = 0; i < 1000; i++)
+            {
+                collection.Add(random.Next(-10000, 10000));
+            }
+            collection = MergeSort<int>.Sort(collection);
+            // Assert
+            int prevElement = -10001;
+            foreach (var element in collection)
+            {
+                Assert.IsTrue(element >= prevElement);
+                prevElement = element;
+            }
+        }
+    }
+    [TestClass]
+    public class HeapSortTests
+    {
+        [TestMethod]
+        public void HeapSort_Test()
+        {
+            // Arrange
+            var collection = new Collection<int>();
+            Random random = new Random();
+            // Act
+
+            for (int i = 0; i < 1000; i++)
+            {
+                collection.Add(random.Next(-10000, 10000));
+            }
+            HeapSort<int>.Sort(collection);
+            // Assert
+            int prevElement = -10001;
+            foreach (var element in collection)
             {
                 Assert.IsTrue(element >= prevElement);
                 prevElement = element;

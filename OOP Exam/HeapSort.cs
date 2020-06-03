@@ -1,66 +1,60 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 
 namespace OOP_Exam
 {
-    class HeapSort
+    public class HeapSort<T>
     {
-        private static Collection<int> MergeSort(Collection<int> unsorted)
+        public static Collection<T> Sort(Collection<T> collection, Comparer<T> comparer = null)
         {
-            if (unsorted.Count <= 1)
-                return unsorted;
-
-            Collection<int> left = new Collection<int>();
-            Collection<int> right = new Collection<int>();
-
-            int middle = unsorted.Count / 2;
-            for (int i = 0; i < middle; i++)  //Dividing the unsorted list
+            int n = collection.Count;
+            // Build heap (rearrange array) 
+            for (int i = n / 2 - 1; i >= 0; i--)
+                Heapify(collection, n, i);
+            // One by one extract an element from heap 
+            for (int i = n - 1; i > 0; i--)
             {
-                left.Add(unsorted[i]);
+                // Move current root to end 
+                T temp = collection[0];
+                collection[0] = collection[i];
+                collection[i] = temp;
+                // call max heapify on the reduced heap 
+                Heapify(collection, i, 0);
             }
-            for (int i = middle; i < unsorted.Count; i++)
-            {
-                right.Add(unsorted[i]);
-            }
-
-            left = MergeSort(left);
-            right = MergeSort(right);
-            return Merge(left, right);
+            return collection;
         }
 
-        private static Collection<int> Merge(Collection<int> left, Collection<int> right)
+        // To heapify a subtree rooted with node i which is 
+        // an index in arr[]. n is size of heap 
+        private static void Heapify(Collection<T> collection, int n, int i, Comparer<T> comparer = null)
         {
-            Collection<int> result = new Collection<int>();
-
-            while (left.Count > 0 || right.Count > 0)
+            if (comparer == null)
             {
-                if (left.Count > 0 && right.Count > 0)
-                {
-                    if (left.First() <= right.First())  //Comparing First two elements to see which is smaller
-                    {
-                        result.Add(left.First());
-                        left.Remove(left.First());      //Rest of the list minus the first element
-                    }
-                    else
-                    {
-                        result.Add(right.First());
-                        right.Remove(right.First());
-                    }
-                }
-                else if (left.Count > 0)
-                {
-                    result.Add(left.First());
-                    left.Remove(left.First());
-                }
-                else if (right.Count > 0)
-                {
-                    result.Add(right.First());
-
-                    right.Remove(right.First());
-                }
+                comparer = Comparer<T>.Default;
             }
-            return result;
+            int largest = i; // Initialize largest as root 
+            int l = 2 * i + 1; // left = 2*i + 1 
+            int r = 2 * i + 2; // right = 2*i + 2 
+
+            // If left child is larger than root 
+            if (l < n && comparer.Compare(collection[l], collection[largest]) > 0)
+                largest = l;
+
+            // If right child is larger than largest so far 
+            if (r < n && comparer.Compare(collection[r], collection[largest]) > 0)
+                largest = r;
+
+            // If largest is not root 
+            if (largest != i)
+            {
+                T swap = collection[i];
+                collection[i] = collection[largest];
+                collection[largest] = swap;
+
+                // Recursively heapify the affected sub-tree 
+                Heapify(collection, n, largest);
+            }
         }
+
     }
 }
