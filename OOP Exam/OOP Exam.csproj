@@ -69,6 +69,8 @@
     <Compile Include="BPlusTree\RingArray.cs" />
     <Compile Include="BPlusTree\RingArrayConstraints.cs" />
     <Compile Include="BPlusTree\SparseArray.cs" />
+    <Compile Include="HeapSort.cs" />
+    <Compile Include="InsertionSort.cs" />
     <Compile Include="NodeColor.cs" />
     <Compile Include="RedBlackTree.cs" />
     <Compile Include="RedBlackTreeNode.cs" />

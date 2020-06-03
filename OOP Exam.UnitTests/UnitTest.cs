@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OOP_Exam;
 using OOP_Exam.BPlusTree;
@@ -184,6 +185,7 @@ namespace OOP_Exam.UnitTests
         {
             // Arrange
             var tree = new BPTree<int, int>();
+            int res;
             // Act
             for (int i = 99; i >= 0; i--)
             {
@@ -192,13 +194,13 @@ namespace OOP_Exam.UnitTests
             // Assert
             for (int i = 0; i < 100; i++)
             {
-                int res;
                 tree.TryGet(i, out res);
                 Assert.AreEqual(res, i);
             }
             int removeResult;
             Assert.IsTrue(tree.Remove(5, out removeResult));
             Assert.IsFalse(tree.Remove(137, out removeResult));
+            Assert.IsFalse(tree.TryGet(137, out res));
         }
 
         [TestMethod]
@@ -213,9 +215,35 @@ namespace OOP_Exam.UnitTests
             }
             // Assert
             int prevElement = -1;
-            foreach(var element in tree)
+            foreach (var element in tree)
             {
                 Assert.IsTrue(element > prevElement);
+                prevElement = element;
+            }
+        }
+    }
+
+    [TestClass]
+    public class InsertionSortTests
+    {
+        [TestMethod]
+        public void InsertionSort_Test()
+        {
+            // Arrange
+            var collection1 = new Collection<int>();
+            Random random = new Random();
+            // Act
+
+            for (int i = 0; i < 1000; i++)
+            {
+                collection1.Add(random.Next(-10000,10000));
+            }
+            InsertionSort<int>.Sort(collection1);
+            // Assert
+            int prevElement = -10001;
+            foreach (var element in collection1)
+            {
+                Assert.IsTrue(element >= prevElement);
                 prevElement = element;
             }
         }
