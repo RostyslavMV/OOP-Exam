@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OOP_Exam
 {
     public class InsertionSort<T>
     {
-        public static void Sort(Collection<T> collection)
+        public static Collection<T> Sort(Collection<T> collection)
         {
             int n = collection.Count;
             for (int i = 1; i < n; ++i)
@@ -28,6 +24,7 @@ namespace OOP_Exam
                 }
                 collection[j + 1] = key;
             }
+            return collection;
         }
     }
 }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections;
 
 namespace OOP_Exam
 {
@@ -119,7 +114,7 @@ namespace OOP_Exam
             if (list.StartNode == null)
             {
                 return false;
-            }          
+            }
             if (current == null)
             {
                 current = list.StartNode;

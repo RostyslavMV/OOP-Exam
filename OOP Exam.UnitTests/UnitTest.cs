@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OOP_Exam;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OOP_Exam.BPlusTree;
+using System;
+using System.Collections.ObjectModel;
 
 namespace OOP_Exam.UnitTests
 {
@@ -236,7 +235,7 @@ namespace OOP_Exam.UnitTests
 
             for (int i = 0; i < 1000; i++)
             {
-                collection1.Add(random.Next(-10000,10000));
+                collection1.Add(random.Next(-10000, 10000));
             }
             InsertionSort<int>.Sort(collection1);
             // Assert
