@@ -55,6 +55,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BPlusTree\BPTree.cs" />
+    <Compile Include="BPlusTree\Builder.cs" />
+    <Compile Include="BPlusTree\DebugView.cs" />
+    <Compile Include="BPlusTree\EnumerableExtensions.cs" />
+    <Compile Include="BPlusTree\Interfaces.cs" />
+    <Compile Include="BPlusTree\InternalNode.cs" />
+    <Compile Include="BPlusTree\LeafNode.cs" />
+    <Compile Include="BPlusTree\Node.cs" />
+    <Compile Include="BPlusTree\NumericExtensions.cs" />
+    <Compile Include="BPlusTree\ReversingList.cs" />
+    <Compile Include="BPlusTree\ReversingReadOnlyList.cs" />
+    <Compile Include="BPlusTree\RingArray.cs" />
+    <Compile Include="BPlusTree\RingArrayConstraints.cs" />
+    <Compile Include="BPlusTree\SparseArray.cs" />
     <Compile Include="NodeColor.cs" />
     <Compile Include="RedBlackTree.cs" />
     <Compile Include="RedBlackTreeNode.cs" />

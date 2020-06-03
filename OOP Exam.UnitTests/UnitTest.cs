@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OOP_Exam;
+using OOP_Exam.BPlusTree;
 
 namespace OOP_Exam.UnitTests
 {
@@ -175,5 +176,26 @@ namespace OOP_Exam.UnitTests
             Assert.AreEqual(list.StartNode.Next.Next.Data, 2);
         }
     }
-
+    [TestClass]
+    public class BPTreeTests
+    {
+        [TestMethod]
+        public void BPTree_BuildAndTryGet()
+        {
+            // Arrange
+            var tree = new BPTree<int, int>();
+            // Act
+            for (int i = 0; i < 100; i++)
+            {
+                tree.Add(i, i);
+            }
+            // Assert
+            for (int i = 0; i < 100; i++)
+            {
+                int res;
+                tree.TryGet(i, out res);
+                Assert.AreEqual(res, i);
+            }
+        }
+    }
 }
