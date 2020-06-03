@@ -180,12 +180,12 @@ namespace OOP_Exam.UnitTests
     public class BPTreeTests
     {
         [TestMethod]
-        public void BPTree_BuildAndTryGet()
+        public void BPTree_BuildDeleteTryGet()
         {
             // Arrange
             var tree = new BPTree<int, int>();
             // Act
-            for (int i = 0; i < 100; i++)
+            for (int i = 99; i >= 0; i--)
             {
                 tree.Add(i, i);
             }
@@ -195,6 +195,28 @@ namespace OOP_Exam.UnitTests
                 int res;
                 tree.TryGet(i, out res);
                 Assert.AreEqual(res, i);
+            }
+            int removeResult;
+            Assert.IsTrue(tree.Remove(5, out removeResult));
+            Assert.IsFalse(tree.Remove(137, out removeResult));
+        }
+
+        [TestMethod]
+        public void BPTree_IENumerator()
+        {
+            // Arrange
+            var tree = new BPTree<int, int>();
+            // Act
+            for (int i = 0; i < 100; i++)
+            {
+                tree.Add(i, i);
+            }
+            // Assert
+            int prevElement = -1;
+            foreach(var element in tree)
+            {
+                Assert.IsTrue(element > prevElement);
+                prevElement = element;
             }
         }
     }
