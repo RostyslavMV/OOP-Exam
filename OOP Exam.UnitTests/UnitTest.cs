@@ -232,24 +232,28 @@ namespace OOP_Exam.UnitTests
             var collectionInsertion = new Collection<int>();
             var collectionMerge = new Collection<int>();
             var collectionHeap = new Collection<int>();
+            var collectionRadix = new Collection<int>();
             Random random = new Random();
             // Act
 
             for (int i = 0; i < 1000; i++)
             {
-                var number = random.Next(-10000, 10000);
+                var number = random.Next(0, 10000);
                 collectionInsertion.Add(number);
                 collectionMerge.Add(number);
                 collectionHeap.Add(number);
+                collectionRadix.Add(number);
             }
             InsertionSort<int>.Sort(collectionInsertion);
             collectionMerge = MergeSort<int>.Sort(collectionMerge);
             HeapSort<int>.Sort(collectionHeap);
+            RadixSort.Sort(collectionRadix);
             // Assert
             for (int i = 0; i < collectionInsertion.Count; i++)
             {
                 Assert.AreEqual(collectionInsertion[i], collectionMerge[i]);
                 Assert.AreEqual(collectionHeap[i], collectionMerge[i]);
+                Assert.AreEqual(collectionRadix[i], collectionHeap[i]);
             }
         }
     }
@@ -319,6 +323,31 @@ namespace OOP_Exam.UnitTests
                 collection.Add(random.Next(-10000, 10000));
             }
             HeapSort<int>.Sort(collection);
+            // Assert
+            int prevElement = -10001;
+            foreach (var element in collection)
+            {
+                Assert.IsTrue(element >= prevElement);
+                prevElement = element;
+            }
+        }
+    }
+    [TestClass]
+    public class RadixSortTests
+    {
+        [TestMethod]
+        public void RadixSort_Test()
+        {
+            // Arrange
+            var collection = new Collection<int>();
+            Random random = new Random();
+            // Act
+
+            for (int i = 0; i < 1000; i++)
+            {
+                collection.Add(random.Next(0, 10000));
+            }
+            RadixSort.Sort(collection);
             // Assert
             int prevElement = -10001;
             foreach (var element in collection)

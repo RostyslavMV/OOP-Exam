@@ -24,8 +24,6 @@ namespace OOP_Exam
             return collection;
         }
 
-        // To heapify a subtree rooted with node i which is 
-        // an index in arr[]. n is size of heap 
         private static void Heapify(Collection<T> collection, int n, int i, Comparer<T> comparer = null)
         {
             if (comparer == null)
