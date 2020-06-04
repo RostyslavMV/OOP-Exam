@@ -357,4 +357,29 @@ namespace OOP_Exam.UnitTests
             }
         }
     }
+
+    [TestClass]
+    public class SeparateChainingHashTable
+    {
+        [TestMethod]
+        public void SeparateChainingHashTable_GetAddRemove()
+        {
+            // Arrange
+            var hashTable = new SeparateChainingHashTable<int, string>();
+            // Act
+            for (int i = 0; i < 100; i++)
+            {
+                hashTable.Add(i, i.ToString());
+            }
+            hashTable.Remove(50);
+            hashTable.Remove(40);
+            // Assert
+            for (int i = 0; i < 100; i++)
+            {
+                if (i != 40 && i != 50)
+                    Assert.AreEqual(i.ToString(), hashTable.Get(i));
+                else Assert.AreEqual(null, hashTable.Get(i));
+            }
+        }
+    }
 }
