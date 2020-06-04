@@ -359,7 +359,7 @@ namespace OOP_Exam.UnitTests
     }
 
     [TestClass]
-    public class SeparateChainingHashTable
+    public class SeparateChainingHashTableTests
     {
         [TestMethod]
         public void SeparateChainingHashTable_GetAddRemove()
@@ -382,13 +382,37 @@ namespace OOP_Exam.UnitTests
             }
         }
         [TestClass]
-        public class QuadraticHashTable
+        public class QuadraticHashTableTests
         {
             [TestMethod]
             public void QuadraticHashTable_GetAddRemove()
             {
                 // Arrange
                 var hashTable = new QuadraticHashTable<int, string>();
+                // Act
+                for (int i = 0; i < 100; i++)
+                {
+                    hashTable.Add(i, i.ToString());
+                }
+                hashTable.Remove(50);
+                hashTable.Remove(40);
+                // Assert
+                for (int i = 0; i < 100; i++)
+                {
+                    if (i != 40 && i != 50)
+                        Assert.AreEqual(i.ToString(), hashTable.Get(i));
+                    else Assert.AreEqual(null, hashTable.Get(i));
+                }
+            }
+        }
+        [TestClass]
+        public class SeparateChaining2ChoiceHashTableTests
+        {
+            [TestMethod]
+            public void SeparateChaining2ChoiceHashTable_GetAddRemove()
+            {
+                // Arrange
+                var hashTable = new SeparateChaining2ChoiceHashTable<int, string>();
                 // Act
                 for (int i = 0; i < 100; i++)
                 {

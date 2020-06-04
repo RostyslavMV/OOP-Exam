@@ -78,6 +78,7 @@
     <Compile Include="RadixSort.cs" />
     <Compile Include="RedBlackTree.cs" />
     <Compile Include="RedBlackTreeNode.cs" />
+    <Compile Include="SeparateChaining2ChoiceHashTable.cs" />
     <Compile Include="SeparateChainingHashTable.cs" />
     <Compile Include="SLCircularList.cs" />
     <Page Include="MainWindow.xaml">

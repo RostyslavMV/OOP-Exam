@@ -29,6 +29,9 @@ namespace OOP_Exam
 
         public abstract TValue Remove(TKey key);
         protected abstract void Add(HashNode<TKey, TValue> node);
-        protected abstract int GetHash(TKey key);
+        protected int GetHash(TKey key)
+        {
+            return key.GetHashCode() % NumberOfCells;
+        }
     }
 }

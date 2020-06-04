@@ -50,11 +50,6 @@ namespace OOP_Exam
             return default;
         }
 
-        protected override int GetHash(TKey key)
-        {
-            return key.GetHashCode() % NumberOfCells;
-        }
-
         public override TValue Remove(TKey key)
         {
             int index = GetHash(key);

@@ -70,10 +70,6 @@ namespace OOP_Exam
             }
         }
 
-        protected override int GetHash(TKey key)
-        {
-            return key.GetHashCode() % NumberOfCells;
-        }
         protected int GetHash(TKey key, int i)
         {
             return (key.GetHashCode() + i * i) % NumberOfCells;
