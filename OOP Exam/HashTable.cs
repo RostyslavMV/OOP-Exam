@@ -20,6 +20,7 @@ namespace OOP_Exam
 
     public abstract class HashTable<TKey, TValue>
     {
+        protected int NumberOfCells;
         public abstract TValue Get(TKey key);
         public void Add(TKey key, TValue value)
         {

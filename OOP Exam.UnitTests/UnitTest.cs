@@ -381,5 +381,29 @@ namespace OOP_Exam.UnitTests
                 else Assert.AreEqual(null, hashTable.Get(i));
             }
         }
+        [TestClass]
+        public class QuadraticHashTable
+        {
+            [TestMethod]
+            public void QuadraticHashTable_GetAddRemove()
+            {
+                // Arrange
+                var hashTable = new QuadraticHashTable<int, string>();
+                // Act
+                for (int i = 0; i < 100; i++)
+                {
+                    hashTable.Add(i, i.ToString());
+                }
+                hashTable.Remove(50);
+                hashTable.Remove(40);
+                // Assert
+                for (int i = 0; i < 100; i++)
+                {
+                    if (i != 40 && i != 50)
+                        Assert.AreEqual(i.ToString(), hashTable.Get(i));
+                    else Assert.AreEqual(null, hashTable.Get(i));
+                }
+            }
+        }
     }
 }
