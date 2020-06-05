@@ -567,6 +567,27 @@ namespace OOP_Exam.UnitTests
                 else Assert.AreEqual(container.GetValue(i), default);
             }
         }
+        [TestMethod]
+        public void Container_GetSortedValuesNumber()
+        {
+            // Arrange
+            SeparateChaining2ChoiceHashTable<int, int> chaining2ChoiceHashTable = new SeparateChaining2ChoiceHashTable<int, int>();
+            // Act
+            Random random = new Random();
+            for (int i = 0; i < 1000; i++)
+            {
+                var number = random.Next(0, 10000);
+                chaining2ChoiceHashTable.Add(number, number);
+            }
+            Container<int, int> container = new Container<int, int>(chaining2ChoiceHashTable);
+            // Assert
+            int[] sorted = container.GetSortedValuesNumber(50);
+            int prevNum = -10001;
+            foreach (var num in sorted)
+            {
+                Assert.IsTrue(num >= prevNum);
+            }
+        }
     }
     [TestClass]
     public class SetTests
@@ -578,18 +599,18 @@ namespace OOP_Exam.UnitTests
             RedBlackTree<int> redBlackTree = new RedBlackTree<int>();
             BPTree<int, int> bPlusTree = new BPTree<int, int>();
             // Act
-            for (int i =0; i < 100; i++)
+            for (int i = 0; i < 100; i++)
             {
                 redBlackTree.Add(i);
             }
             for (int i = 50; i < 150; i++)
             {
-                bPlusTree.Add(i,i);
+                bPlusTree.Add(i, i);
             }
             Set<int> bpTreeSet = new Set<int>(bPlusTree);
             Set<int> rbTreeSet = new Set<int>(redBlackTree);
             Set<int> checkSet = new Set<int>();
-            for(int i = 0; i < 50; i++)
+            for (int i = 0; i < 50; i++)
             {
                 checkSet.Add(i);
                 checkSet.Add(i + 100);

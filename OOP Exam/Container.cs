@@ -13,6 +13,7 @@ namespace OOP_Exam
     public class Container<TKey, TValue>
     {
         private Dictionary<TKey, TValue> dictionary = new Dictionary<TKey, TValue>();
+        private TValue[] sortedValues;
 
         public Container(RedBlackTree<TValue> redBlackTree, Collection<TKey> keys)
         {
@@ -104,7 +105,44 @@ namespace OOP_Exam
 
         public TValue[] GetValues()
         {
-            return dictionary.Values.ToArray();
+            sortedValues = dictionary.Values.ToArray();
+            return sortedValues;
+        }
+
+        private void SortValues(Comparer<TValue> comparer)
+        {
+            sortedValues = dictionary.Values.ToArray();
+            Array.Sort(sortedValues, comparer);
+        }
+        
+        public TValue[] GetSortedValues(Comparer<TValue> comparer = null)
+        {
+            if (comparer == null)
+            {
+                comparer = Comparer<TValue>.Default;
+            }
+            SortValues(comparer);
+            return sortedValues;
+        }
+
+        private TValue[] SubArray(TValue[] array, int firstIndex, int lastIndex)
+        {
+            TValue[] ret = new TValue[lastIndex-firstIndex+1];
+            for (int i =firstIndex; i <= lastIndex; i++)
+            {
+                ret[i] = array[i];
+            }
+            return ret;
+        }
+
+        public  TValue[] GetSortedValuesNumber(int number, Comparer<TValue> comparer = null)
+        {
+            if (comparer == null)
+            {
+                comparer = Comparer<TValue>.Default;
+            }
+            SortValues(comparer);
+            return SubArray(sortedValues, 0, number - 1);
         }
     }
 }
