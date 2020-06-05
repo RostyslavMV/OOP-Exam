@@ -60,4 +60,29 @@ namespace OOP_Exam
             DateOfRevision = revisionDate;
         }
     }
+
+    class CloudStorage
+    {
+        public Person Person { get; private set; }
+        public CompanyProvider CompanyProvider { get; private set; }
+        public Catalog Catalog { get; private set; }
+
+        public CloudStorage()
+        {
+            Person = null;
+            CompanyProvider = null;
+            Catalog = null;
+        }
+
+        public CloudStorage(Person person, CompanyProvider companyProvider, Catalog catalog)
+        {
+            Person = person;
+            CompanyProvider = companyProvider;
+            Catalog = catalog;
+        }
+
+        public CloudStorage(string personName, string companyName, Catalog catalog)
+            : this(new Person(personName), new CompanyProvider(companyName), catalog) { }
+    }
+
 }
