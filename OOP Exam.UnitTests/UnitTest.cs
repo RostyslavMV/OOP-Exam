@@ -382,191 +382,220 @@ namespace OOP_Exam.UnitTests
                 else Assert.AreEqual(null, hashTable.Get(i));
             }
         }
-
-        [TestClass]
-        public class QuadraticHashTableTests
+    }
+    [TestClass]
+    public class QuadraticHashTableTests
+    {
+        [TestMethod]
+        public void QuadraticHashTable_GetAddRemove()
         {
-            [TestMethod]
-            public void QuadraticHashTable_GetAddRemove()
+            // Arrange
+            var hashTable = new QuadraticHashTable<int, string>();
+            // Act
+            for (int i = 0; i < 100; i++)
             {
-                // Arrange
-                var hashTable = new QuadraticHashTable<int, string>();
-                // Act
-                for (int i = 0; i < 100; i++)
-                {
-                    hashTable.Add(i, i.ToString());
-                }
-                hashTable.Remove(50);
-                hashTable.Remove(40);
-                // Assert
-                for (int i = 0; i < 100; i++)
-                {
-                    if (i != 40 && i != 50)
-                        Assert.AreEqual(i.ToString(), hashTable.Get(i));
-                    else Assert.AreEqual(null, hashTable.Get(i));
-                }
+                hashTable.Add(i, i.ToString());
+            }
+            hashTable.Remove(50);
+            hashTable.Remove(40);
+            // Assert
+            for (int i = 0; i < 100; i++)
+            {
+                if (i != 40 && i != 50)
+                    Assert.AreEqual(i.ToString(), hashTable.Get(i));
+                else Assert.AreEqual(null, hashTable.Get(i));
+            }
+        }
+    }
+
+    [TestClass]
+    public class SeparateChaining2ChoiceHashTableTests
+    {
+        [TestMethod]
+        public void SeparateChaining2ChoiceHashTable_GetAddRemove()
+        {
+            // Arrange
+            var hashTable = new SeparateChaining2ChoiceHashTable<int, string>();
+            // Act
+            for (int i = 0; i < 100; i++)
+            {
+                hashTable.Add(i, i.ToString());
+            }
+            hashTable.Remove(50);
+            hashTable.Remove(40);
+            // Assert
+            for (int i = 0; i < 100; i++)
+            {
+                if (i != 40 && i != 50)
+                    Assert.AreEqual(i.ToString(), hashTable.Get(i));
+                else Assert.AreEqual(null, hashTable.Get(i));
+            }
+        }
+    }
+
+    [TestClass]
+    public class ContainerTests
+    {
+        [TestMethod]
+        public void Container_RedBlackTree()
+        {
+            // Arrange
+            RedBlackTree<int> redBlackTree = new RedBlackTree<int>();
+            Collection<int> keys = new Collection<int>();
+            // Act
+            for (int i = 0; i < 100; i++)
+            {
+                redBlackTree.Add(i);
+                keys.Add(100 + i);
+            }
+            Container<int, int> container = new Container<int, int>(redBlackTree, keys);
+            container.RemoveByKey(120);
+            container.RemoveByKey(180);
+            // Assert
+            for (int i = 100; i < 200; i++)
+            {
+                if (i != 120 && i != 180)
+                    Assert.AreEqual(container.GetValue(i), i - 100);
+                else Assert.AreEqual(container.GetValue(i), default);
             }
         }
 
-        [TestClass]
-        public class SeparateChaining2ChoiceHashTableTests
+        [TestMethod]
+        public void Container_BPTree()
         {
-            [TestMethod]
-            public void SeparateChaining2ChoiceHashTable_GetAddRemove()
+            // Arrange
+            BPTree<int, int> bpTree = new BPTree<int, int>();
+            // Act
+            for (int i = 0; i < 100; i++)
             {
-                // Arrange
-                var hashTable = new SeparateChaining2ChoiceHashTable<int, string>();
-                // Act
-                for (int i = 0; i < 100; i++)
-                {
-                    hashTable.Add(i, i.ToString());
-                }
-                hashTable.Remove(50);
-                hashTable.Remove(40);
-                // Assert
-                for (int i = 0; i < 100; i++)
-                {
-                    if (i != 40 && i != 50)
-                        Assert.AreEqual(i.ToString(), hashTable.Get(i));
-                    else Assert.AreEqual(null, hashTable.Get(i));
-                }
+                bpTree.Add(100 + i, i);
+            }
+            Container<int, int> container = new Container<int, int>(bpTree);
+            container.RemoveByKey(120);
+            container.RemoveByKey(180);
+            // Assert
+            for (int i = 100; i < 200; i++)
+            {
+                if (i != 120 && i != 180)
+                    Assert.AreEqual(container.GetValue(i), i - 100);
+                else Assert.AreEqual(container.GetValue(i), default);
             }
         }
-
-        [TestClass]
-        public class ContainerTests
+        [TestMethod]
+        public void Container_SLcircularList()
         {
-            [TestMethod]
-            public void Container_RedBlackTree()
+            // Arrange
+            SLcircularList<int> list = new SLcircularList<int>();
+            Collection<int> keys = new Collection<int>();
+            // Act
+            for (int i = 0; i < 100; i++)
             {
-                // Arrange
-                RedBlackTree<int> redBlackTree = new RedBlackTree<int>();
-                Collection<int> keys = new Collection<int>();
-                // Act
-                for (int i = 0; i < 100; i++)
-                {
-                    redBlackTree.Add(i);
-                    keys.Add(100 + i);
-                }
-                Container<int, int> container = new Container<int, int>(redBlackTree, keys);
-                container.RemoveByKey(120);
-                container.RemoveByKey(180);
-                // Assert
-                for (int i = 100; i < 200; i++)
-                {
-                    if (i != 120 && i != 180)
-                        Assert.AreEqual(container.GetValue(i), i - 100);
-                    else Assert.AreEqual(container.GetValue(i), default);
-                }
+                list.AddToEnd(i);
+                keys.Add(100 + i);
             }
-
-            [TestMethod]
-            public void Container_BPTree()
+            Container<int, int> container = new Container<int, int>(list, keys);
+            container.RemoveByKey(120);
+            container.RemoveByKey(180);
+            // Assert
+            for (int i = 100; i < 200; i++)
             {
-                // Arrange
-                BPTree<int, int> bpTree = new BPTree<int, int>();
-                // Act
-                for (int i = 0; i < 100; i++)
-                {
-                    bpTree.Add(100 + i, i);
-                }
-                Container<int, int> container = new Container<int, int>(bpTree);
-                container.RemoveByKey(120);
-                container.RemoveByKey(180);
-                // Assert
-                for (int i = 100; i < 200; i++)
-                {
-                    if (i != 120 && i != 180)
-                        Assert.AreEqual(container.GetValue(i), i - 100);
-                    else Assert.AreEqual(container.GetValue(i), default);
-                }
+                if (i != 120 && i != 180)
+                    Assert.AreEqual(container.GetValue(i), i - 100);
+                else Assert.AreEqual(container.GetValue(i), default);
             }
-            [TestMethod]
-            public void Container_SLcircularList()
+        }
+        [TestMethod]
+        public void Container_QuadraticHashTable()
+        {
+            // Arrange
+            QuadraticHashTable<int, string> quadraticHashTable = new QuadraticHashTable<int, string>();
+            // Act
+            for (int i = 0; i < 100; i++)
             {
-                // Arrange
-                SLcircularList<int> list = new SLcircularList<int>();
-                Collection<int> keys = new Collection<int>();
-                // Act
-                for (int i = 0; i < 100; i++)
-                {
-                    list.AddToEnd(i);
-                    keys.Add(100 + i);
-                }
-                Container<int, int> container = new Container<int, int>(list, keys);
-                container.RemoveByKey(120);
-                container.RemoveByKey(180);
-                // Assert
-                for (int i = 100; i < 200; i++)
-                {
-                    if (i != 120 && i != 180)
-                        Assert.AreEqual(container.GetValue(i), i - 100);
-                    else Assert.AreEqual(container.GetValue(i), default);
-                }
+                quadraticHashTable.Add(i, i.ToString());
             }
-            [TestMethod]
-            public void Container_QuadraticHashTable()
+            Container<int, string> container = new Container<int, string>(quadraticHashTable);
+            container.RemoveByKey(20);
+            container.RemoveByKey(80);
+            // Assert
+            for (int i = 0; i < 100; i++)
             {
-                // Arrange
-                QuadraticHashTable<int, string> quadraticHashTable = new QuadraticHashTable<int, string>();
-                // Act
-                for (int i = 0; i < 100; i++)
-                {
-                    quadraticHashTable.Add(i, i.ToString());
-                }
-                Container<int, string> container = new Container<int, string>(quadraticHashTable);
-                container.RemoveByKey(20);
-                container.RemoveByKey(80);
-                // Assert
-                for (int i = 0; i < 100; i++)
-                {
-                    if (i != 20 && i != 80)
-                        Assert.AreEqual(container.GetValue(i),i.ToString());
-                    else Assert.AreEqual(container.GetValue(i), default);
-                }
+                if (i != 20 && i != 80)
+                    Assert.AreEqual(container.GetValue(i), i.ToString());
+                else Assert.AreEqual(container.GetValue(i), default);
             }
-            [TestMethod]
-            public void Container_SeparateChainingHashTable()
+        }
+        [TestMethod]
+        public void Container_SeparateChainingHashTable()
+        {
+            // Arrange
+            SeparateChainingHashTable<int, string> separateChainingHashTable = new SeparateChainingHashTable<int, string>();
+            // Act
+            for (int i = 0; i < 100; i++)
             {
-                // Arrange
-                SeparateChainingHashTable<int, string> separateChainingHashTable = new SeparateChainingHashTable<int, string>();
-                // Act
-                for (int i = 0; i < 100; i++)
-                {
-                    separateChainingHashTable.Add(i, i.ToString());
-                }
-                Container<int, string> container = new Container<int, string>(separateChainingHashTable);
-                container.RemoveByKey(20);
-                container.RemoveByKey(80);
-                // Assert
-                for (int i = 0; i < 100; i++)
-                {
-                    if (i != 20 && i != 80)
-                        Assert.AreEqual(container.GetValue(i), i.ToString());
-                    else Assert.AreEqual(container.GetValue(i), default);
-                }
+                separateChainingHashTable.Add(i, i.ToString());
             }
-            [TestMethod]
-            public void Container_SeparateChaining2ChoiceHashTable()
+            Container<int, string> container = new Container<int, string>(separateChainingHashTable);
+            container.RemoveByKey(20);
+            container.RemoveByKey(80);
+            // Assert
+            for (int i = 0; i < 100; i++)
             {
-                // Arrange
-                SeparateChaining2ChoiceHashTable<int, string> chaining2ChoiceHashTable = new SeparateChaining2ChoiceHashTable<int, string>();
-                // Act
-                for (int i = 0; i < 100; i++)
-                {
-                    chaining2ChoiceHashTable.Add(i, i.ToString());
-                }
-                Container<int, string> container = new Container<int, string>(chaining2ChoiceHashTable);
-                container.RemoveByKey(20);
-                container.RemoveByKey(80);
-                // Assert
-                for (int i = 0; i < 100; i++)
-                {
-                    if (i != 20 && i != 80)
-                        Assert.AreEqual(container.GetValue(i), i.ToString());
-                    else Assert.AreEqual(container.GetValue(i), default);
-                }
+                if (i != 20 && i != 80)
+                    Assert.AreEqual(container.GetValue(i), i.ToString());
+                else Assert.AreEqual(container.GetValue(i), default);
             }
+        }
+        [TestMethod]
+        public void Container_SeparateChaining2ChoiceHashTable()
+        {
+            // Arrange
+            SeparateChaining2ChoiceHashTable<int, string> chaining2ChoiceHashTable = new SeparateChaining2ChoiceHashTable<int, string>();
+            // Act
+            for (int i = 0; i < 100; i++)
+            {
+                chaining2ChoiceHashTable.Add(i, i.ToString());
+            }
+            Container<int, string> container = new Container<int, string>(chaining2ChoiceHashTable);
+            container.RemoveByKey(20);
+            container.RemoveByKey(80);
+            // Assert
+            for (int i = 0; i < 100; i++)
+            {
+                if (i != 20 && i != 80)
+                    Assert.AreEqual(container.GetValue(i), i.ToString());
+                else Assert.AreEqual(container.GetValue(i), default);
+            }
+        }
+    }
+    [TestClass]
+    public class SetTests
+    {
+        [TestMethod]
+        public void Set_Test()
+        {
+            // Arrange
+            RedBlackTree<int> redBlackTree = new RedBlackTree<int>();
+            BPTree<int, int> bPlusTree = new BPTree<int, int>();
+            // Act
+            for (int i =0; i < 100; i++)
+            {
+                redBlackTree.Add(i);
+            }
+            for (int i = 50; i < 150; i++)
+            {
+                bPlusTree.Add(i,i);
+            }
+            Set<int> bpTreeSet = new Set<int>(bPlusTree);
+            Set<int> rbTreeSet = new Set<int>(redBlackTree);
+            Set<int> checkSet = new Set<int>();
+            for(int i = 0; i < 50; i++)
+            {
+                checkSet.Add(i);
+                checkSet.Add(i + 100);
+            }
+            // Assert
+            Assert.IsTrue(bpTreeSet.SymmetricExceptWith(rbTreeSet).set.SetEquals(checkSet.set));
         }
     }
 }

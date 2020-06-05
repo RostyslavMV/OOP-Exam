@@ -12,6 +12,11 @@ namespace OOP_Exam
     {
         public HashSet<TValue> set { get; private set; } = new HashSet<TValue>();
 
+        public Set()
+        {
+
+        }
+
         public Set(RedBlackTree<TValue> redBlackTree)
         {
             foreach (RedBlackTreeNode<TValue> element in redBlackTree)
@@ -20,7 +25,7 @@ namespace OOP_Exam
             }
         }
 
-        public Set(BPTree<Type, TValue> bpTree)
+        public Set(BPTree<TValue, TValue> bpTree)
         {
             foreach (var element in bpTree)
             {
@@ -36,31 +41,31 @@ namespace OOP_Exam
             }
         }
 
-        public Set(SeparateChainingHashTable<Type, TValue> separateChainingHashTable)
+        public Set(SeparateChainingHashTable<object, TValue> separateChainingHashTable)
         {
-            foreach (Collection<HashNode<Type, TValue>> row in separateChainingHashTable.hashTable)
+            foreach (Collection<HashNode<object, TValue>> row in separateChainingHashTable.hashTable)
             {
-                foreach (HashNode<Type, TValue> element in row)
+                foreach (HashNode<object, TValue> element in row)
                 {
                     set.Add(element.Value);
                 }
             }
         }
 
-        public Set(SeparateChaining2ChoiceHashTable<Type, TValue> chaining2ChoiceHashTable)
+        public Set(SeparateChaining2ChoiceHashTable<object, TValue> chaining2ChoiceHashTable)
         {
-            foreach (Collection<HashNode<Type, TValue>> row in chaining2ChoiceHashTable.hashTable)
+            foreach (Collection<HashNode<object, TValue>> row in chaining2ChoiceHashTable.hashTable)
             {
-                foreach (HashNode<Type, TValue> element in row)
+                foreach (HashNode<object, TValue> element in row)
                 {
                     set.Add(element.Value);
                 }
             }
         }
 
-        public Set(QuadraticHashTable<Type, TValue> quadraticHashTable)
+        public Set(QuadraticHashTable<object, TValue> quadraticHashTable)
         {
-            foreach (HashNode<Type, TValue> element in quadraticHashTable.hashTable)
+            foreach (HashNode<object, TValue> element in quadraticHashTable.hashTable)
             {
                 set.Add(element.Value);
             }
