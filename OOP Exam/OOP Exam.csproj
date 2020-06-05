@@ -69,6 +69,7 @@
     <Compile Include="BPlusTree\RingArray.cs" />
     <Compile Include="BPlusTree\RingArrayConstraints.cs" />
     <Compile Include="BPlusTree\SparseArray.cs" />
+    <Compile Include="Container.cs" />
     <Compile Include="HashTable.cs" />
     <Compile Include="HeapSort.cs" />
     <Compile Include="MergeSort.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="RedBlackTreeNode.cs" />
     <Compile Include="SeparateChaining2ChoiceHashTable.cs" />
     <Compile Include="SeparateChainingHashTable.cs" />
+    <Compile Include="Set.cs" />
     <Compile Include="SLCircularList.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

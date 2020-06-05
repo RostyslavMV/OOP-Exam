@@ -10,10 +10,11 @@ namespace OOP_Exam
 {
     public class QuadraticHashTable<TKey, TValue> : HashTable<TKey, TValue>
     {
-        private Collection<HashNode<TKey, TValue>> hashTable = new Collection<HashNode<TKey, TValue>>();
+        public Collection<HashNode<TKey, TValue>> hashTable { get; private set; }
 
         public QuadraticHashTable(int numberOfCells)
         {
+            hashTable = new Collection<HashNode<TKey, TValue>>();
             NumberOfCells = numberOfCells;
             for (int i = 0; i < NumberOfCells; i++)
             {

@@ -5,10 +5,11 @@ namespace OOP_Exam
 {
     public class SeparateChainingHashTable<TKey, TValue> : HashTable<TKey, TValue>
     {
-        private Collection<Collection<HashNode<TKey, TValue>>> hashTable = new Collection<Collection<HashNode<TKey, TValue>>>();
+        public Collection<Collection<HashNode<TKey, TValue>>> hashTable { get; private set; }
 
         public SeparateChainingHashTable(int numberOfCells)
         {
+            hashTable = new Collection<Collection<HashNode<TKey, TValue>>>();
             NumberOfCells = numberOfCells;
             for (int i = 0; i < NumberOfCells; i++)
             {
