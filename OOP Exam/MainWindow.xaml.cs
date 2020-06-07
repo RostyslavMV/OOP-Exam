@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -28,13 +29,17 @@ namespace OOP_Exam
             InitializeComponent();
             InitItems();
             DataContext = this;
+            progressBar = pb;
         }
 
-        public Collection<MenuItem> MenuItems { get; } = new Collection<MenuItem>();
+        public static Collection<MenuItem> MenuItems { get; } = new Collection<MenuItem>();
+        public static Collection<CloudStorage> CloudStorages { get; } = new Collection<CloudStorage>();
+
+        public static ProgressBar progressBar { get; private set; }
 
         void InitItems()
         {
-            MenuItems.Add(new MenuItem("Ввід даних", typeof(UserControl), "About"));
+            MenuItems.Add(new MenuItem("Ввід даних", typeof(InputControl), "About"));
             MenuItems.Add(new MenuItem("Циклічний список", typeof(UserControl), "About"));
             MenuItems.Add(new MenuItem("Червоно-чорне дерево", typeof(UserControl), "About"));
             MenuItems.Add(new MenuItem("B+ Дерево", typeof(UserControl), "About"));
@@ -46,16 +51,16 @@ namespace OOP_Exam
         }
 
         Collection<int> data = new Collection<int>();
-        private int _percentDone;
+        private static int _percentDone;
 
-        int percentDone
+        public static int percentDone
         {
             get => _percentDone;
             set
             {
                 _percentDone = value;
-                Dispatcher.Invoke(() =>
-                { pb.Value = value; });
+                Application.Current.Dispatcher.Invoke(() =>
+                { progressBar.Value = value; });
             }
         }
 
@@ -73,7 +78,7 @@ namespace OOP_Exam
                 {
                     if (!run) return;
                     Thread.Sleep(100);
-                    percentDone = i * 100 / count;
+                    percentDone = i * 100 / count + 1;
                 }
                 data.Add(random.Next());
             }
@@ -92,6 +97,13 @@ namespace OOP_Exam
         private void Stop_Click(object sender, RoutedEventArgs e)
         {
             run = false;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            UIElement control =  (UIElement)Activator.CreateInstance((button.DataContext as MenuItem).ControlType);
+            CurrentControlBorder.Child = control;
         }
     }
 }

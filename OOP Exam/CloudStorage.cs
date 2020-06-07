@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace OOP_Exam
 {
-    class Person
+    public class Person
     {
         public string Name { get; private set; }
 
@@ -13,7 +14,7 @@ namespace OOP_Exam
         }
     }
 
-    class CompanyProvider
+    public class CompanyProvider
     {
         public string Name { get; private set; }
 
@@ -23,17 +24,26 @@ namespace OOP_Exam
         }
     }
 
-    class Catalog
+    public class Catalog
     {
-        public List<File> Files { get; private set; }
+        public Collection<File> Files { get; private set; }
 
-        public Catalog(List<File> files)
+        public string Name { get; private set; }
+
+        public Catalog(string name, Collection<File> files)
         {
+            Name = name;
             Files = files;
+        }
+
+        public Catalog(string name)
+        {
+            Name = name;
+            Files = null;
         }
     }
 
-    class File
+    public class File
     {
         public string Name { get; private set; }
         public int Size { get; private set; }
@@ -51,7 +61,7 @@ namespace OOP_Exam
         }
     }
 
-    class FileRevision
+    public class FileRevision
     {
         public DateTime DateOfRevision { get; private set; }
 
@@ -61,7 +71,7 @@ namespace OOP_Exam
         }
     }
 
-    class CloudStorage
+    public class CloudStorage
     {
         public Person Person { get; private set; }
         public CompanyProvider CompanyProvider { get; private set; }
@@ -81,8 +91,8 @@ namespace OOP_Exam
             Catalog = catalog;
         }
 
-        public CloudStorage(string personName, string companyName, Catalog catalog)
-            : this(new Person(personName), new CompanyProvider(companyName), catalog) { }
+        public CloudStorage(string personName, string companyName, string catalogName)
+            : this(new Person(personName), new CompanyProvider(companyName), new Catalog(catalogName)) { }
     }
 
 }

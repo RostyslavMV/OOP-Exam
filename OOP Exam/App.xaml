@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:OOP_Exam"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <local:InputControl x:Key="InputControl" />
     </Application.Resources>
 </Application>

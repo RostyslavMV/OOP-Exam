@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OOP_Exam"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        FontSize="14"
+        MinWidth="900"
+        Title="MainWindow" Height="450" Width="900">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -16,19 +18,18 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <Button Grid.Column="1" HorizontalAlignment="Left" Content="Завантажити тестові дані" Padding="5, 2" VerticalAlignment="Center" Click="Button_ClickAsync"></Button>
+        <Button Grid.Column="1" HorizontalAlignment="Left" Content="Тест асинхронної функції" Padding="5, 2" VerticalAlignment="Center" Click="Button_ClickAsync"></Button>
         <Button x:Name="Stop" Grid.Column="1" HorizontalAlignment="Right" Content="Стоп" Padding="5, 2" VerticalAlignment="Center" Click="Stop_Click" ></Button>
         <ItemsControl Margin="0,4" ItemsSource="{Binding MenuItems}" Grid.RowSpan="2">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button Margin="1,1" Content="{Binding Text}" ></Button>
+                    <Button FontSize="14" Margin="5,0,5,5" Content="{Binding Text}" Click="Button_Click" ></Button>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
 
         </ItemsControl>
-        <Grid x:Name="CurrentControlGrid" Grid.Column="1" Grid.Row="1">
-            
-        </Grid>
-        <ProgressBar x:Name="pb" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="1" Height="10"/>
+        <Border x:Name="CurrentControlBorder" Grid.Column="1" Grid.Row="1">
+        </Border>
+        <ProgressBar x:Name="pb" VerticalAlignment="Bottom" Margin="0,5" Grid.Column="1" Grid.Row="1" Height="10"/>
     </Grid>
 </Window>
