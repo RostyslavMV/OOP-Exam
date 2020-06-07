@@ -72,15 +72,15 @@ namespace OOP_Exam
         {
             run = true;
             percentDone = 0;
-            LastMethodStart = DateTime.Now;
             LastMethodName = menthodName;
+            LastMethodStart = DateTime.Now;
         }
 
         public void EndMethod()
         {
-            run = false;
-            percentDone = 100;
             TimeSpan time = DateTime.Now - LastMethodStart;
+            run = false;
+            percentDone = 100;       
             LastMethodTimeText = ((int)time.TotalMilliseconds).ToString() + "ms";
         }
 

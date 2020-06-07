@@ -118,6 +118,14 @@ namespace OOP_Exam
         public CloudStorage(string personName, string companyName, string catalogName)
             : this(new Person(personName), new CompanyProvider(companyName), new Catalog(catalogName)) { }
 
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as CloudStorage);
+        }
+        public  bool Equals(CloudStorage other)
+        {
+            return Person.Name == other.Person.Name && CompanyProvider.Name == other.CompanyProvider.Name && Catalog.Name == other.Catalog.Name;
+        }
         public int CompareTo(CloudStorage other)
         {
             if (fieldForComparing == FieldForComparing.Person)

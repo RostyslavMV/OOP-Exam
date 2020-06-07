@@ -39,6 +39,7 @@
                 <RowDefinition Height="30" />
                 <RowDefinition Height="30" />
                 <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
             </Grid.RowDefinitions>
             <TextBlock Margin="5,2" Text="Ім'я користувача" HorizontalAlignment="Left" VerticalAlignment="Center" />
             <TextBox x:Name="NewPersonName" Grid.Column="1" Padding="2,2" VerticalAlignment="Center" Width="210"  Margin="5,2" MaxLength="20" HorizontalAlignment="Center" />
@@ -48,10 +49,11 @@
             <TextBox x:Name="NewCatalogName" Grid.Row="2" Grid.Column="1" Padding="2,2" VerticalAlignment="Center" Width="210"  Margin="5,2" MaxLength="20" HorizontalAlignment="Center" />
             <StackPanel HorizontalAlignment="Center" Grid.Column="1" Grid.Row="3" Orientation="Horizontal">
                 <Button x:Name="AddButton"  HorizontalAlignment="Center" Content="Додати" Margin="5,0" Padding="5, 2" VerticalAlignment="Center" Click="AddButton_ClickAsync" />
-                <Button x:Name="SearchButton"  HorizontalAlignment="Center" Content="Пошук" Margin="5,0" Padding="5, 2" VerticalAlignment="Center" />
-                <Button x:Name="DeleteButton"  HorizontalAlignment="Center" Content="Видалити" Margin="5,0" Padding="5, 2" VerticalAlignment="Center" />
+                <Button x:Name="SearchButton"  HorizontalAlignment="Center" Content="Пошук" Margin="5,0" Padding="5, 2" VerticalAlignment="Center" Click="SearchButton_ClickAsync" />
+                <Button x:Name="DeleteButton"  HorizontalAlignment="Center" Content="Видалити" Margin="5,0" Padding="5, 2" VerticalAlignment="Center" Click="DeleteButton_ClickAsync" />
             </StackPanel>
-            <Button Grid.Column="1" Grid.Row="4" x:Name="CancelButton"  HorizontalAlignment="Center" Content="Видалити" Margin="5,0" Padding="5, 2" VerticalAlignment="Center" Click="CancelButton_Click" />
+            <Button Grid.Column="1" Grid.Row="4" x:Name="CancelButton"  HorizontalAlignment="Center" Content="Відмінити" Margin="5,0" Padding="5, 2" VerticalAlignment="Center" Click="CancelButton_Click" />
+            <TextBlock Grid.Column="1" Grid.Row="5" x:Name="SearchResult" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
     </Grid>
 </UserControl>

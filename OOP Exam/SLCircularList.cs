@@ -131,6 +131,7 @@ namespace OOP_Exam
                     StartNode = StartNode.Next;
                     LastNode.SetNext(StartNode);
                 }
+                CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, StartNode));
             }
             else
             {
@@ -146,13 +147,13 @@ namespace OOP_Exam
                             prev.SetNext(StartNode);
                             LastNode = prev;
                         }
+                        CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, current));
                         return;
                     }
                     prev = current;
                     current = current.Next;
                 }
             }
-
         }
 
         public ListNode<T> Search(T data)
