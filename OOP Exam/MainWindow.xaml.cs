@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -22,27 +25,69 @@ namespace OOP_Exam
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        public static MainWindow mainWindow { get; private set; }
         public MainWindow()
         {
             InitializeComponent();
             InitItems();
             DataContext = this;
             progressBar = pb;
+            mainWindow = this;
         }
 
         public static Collection<MenuItem> MenuItems { get; } = new Collection<MenuItem>();
         public static Collection<CloudStorage> CloudStorages { get; } = new Collection<CloudStorage>();
 
-        public static SLcircularList<CloudStorage> SLcircularList { get; } = new SLcircularList<CloudStorage>();
+        public SLcircularList<CloudStorage> SLcircularList { get; set; } = new SLcircularList<CloudStorage>();
 
         public static ProgressBar progressBar { get; private set; }
+
+        private static string lastMethodName;
+        public string LastMethodName
+        {
+            get => lastMethodName;
+            set
+            {
+                lastMethodName = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private DateTime LastMethodStart { get; set; }
+
+        private string lastMethodTimeText;
+        public string LastMethodTimeText
+        {
+            get => lastMethodTimeText; 
+            set
+            {
+                lastMethodTimeText = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public void StartMethod(string menthodName)
+        {
+            run = true;
+            percentDone = 0;
+            LastMethodStart = DateTime.Now;
+            LastMethodName = menthodName;
+        }
+
+        public void EndMethod()
+        {
+            run = false;
+            percentDone = 100;
+            TimeSpan time = DateTime.Now - LastMethodStart;
+            LastMethodTimeText = ((int)time.TotalMilliseconds).ToString() + "ms";
+        }
 
         void InitItems()
         {
             MenuItems.Add(new MenuItem("Ввід даних", typeof(InputControl), "About"));
-            MenuItems.Add(new MenuItem("Циклічний список", typeof(CircularListControl), "About"));
+            MenuItems.Add(new MenuItem("Циклічний список", typeof(CircularListControl), "List.html"));
             MenuItems.Add(new MenuItem("Червоно-чорне дерево", typeof(UserControl), "About"));
             MenuItems.Add(new MenuItem("B+ Дерево", typeof(UserControl), "About"));
             MenuItems.Add(new MenuItem("Хеш, метод ланцюжків", typeof(UserControl), "About"));
@@ -66,7 +111,9 @@ namespace OOP_Exam
             }
         }
 
-        bool run = false;
+        public bool run = false;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         void generateCollection()
         {
@@ -104,8 +151,20 @@ namespace OOP_Exam
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
-            UIElement control =  (UIElement)Activator.CreateInstance((button.DataContext as MenuItem).ControlType);
+            UIElement control = (UIElement)Activator.CreateInstance((button.DataContext as MenuItem).ControlType);
             CurrentControlBorder.Child = control;
+            string curDir = Directory.GetCurrentDirectory();
+            var path = "HTML/" + (button.DataContext as MenuItem).About;
+            if (System.IO.File.Exists(path))
+            {
+                Browser.Navigate(String.Format("file:///{0}/" + path, curDir));
+            }
+            else Browser.Navigate("about:blank");
+        }
+
+        protected void OnPropertyChanged([CallerMemberName] string name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }

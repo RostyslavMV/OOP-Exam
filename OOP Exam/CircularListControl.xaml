@@ -18,14 +18,40 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <TextBlock Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="DemiBold" Text="Циклічнй однозв'язний список" />
-        <DataGrid x:Name="List" Grid.Row="1"  Margin="0 3 0 0" Background="White" IsReadOnly="True" SelectionMode="Single" SelectionUnit="FullRow"
-             CanUserResizeRows="False" CanUserResizeColumns="False" AutoGenerateColumns="False" 
-             HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray" BorderThickness="0" Height="Auto" MinHeight="50" >
-            
+        <DataGrid x:Name="List" Grid.Row="1" Grid.RowSpan="2"  Margin="0 3 0 0" Background="White" IsReadOnly="True" SelectionMode="Single" SelectionUnit="FullRow"
+             CanUserResizeRows="False" CanUserResizeColumns="False" AutoGenerateColumns="False"
+             HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray" BorderThickness="0" Height="Auto" MinHeight="50"  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Header="Name" x:Name="PersonName" Binding="{Binding Data.Person.Name}" />
+                <DataGridTextColumn Width="*" Header="Company" x:Name="CompanyName" Binding="{Binding Data.CompanyProvider.Name}" />
+                <DataGridTextColumn Width="2*" Header="Catalog" x:Name="CatalogName" Binding="{Binding Data.Catalog.Name}" />
+            </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
-            <Button  x:Name="AddCollection" Content="Завантажити тестові дані" Margin="5,0" Padding="5, 2" VerticalAlignment="Center" Click="AddCollection_ClickAsync" />
-            <TextBlock x:Name="AddCollectionTime" VerticalAlignment="Center"/>
-        </StackPanel>
+        <Button HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1"  x:Name="AddCollection" Content="Додати тестові дані" Margin="5,0" Padding="5, 2" VerticalAlignment="Center" Click="AddCollection_ClickAsync" />
+        <Grid x:Name="InnerGrid" Grid.Row="2" Grid.Column="1" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+            <TextBlock Margin="5,2" Text="Ім'я користувача" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <TextBox x:Name="NewPersonName" Grid.Column="1" Padding="2,2" VerticalAlignment="Center" Width="210"  Margin="5,2" MaxLength="20" HorizontalAlignment="Center" />
+            <TextBlock Grid.Row="1" Margin="5,2" Text="Назва компанії" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <TextBox x:Name="NewCompanyName" Grid.Row="1" Grid.Column="1" Padding="2,2" VerticalAlignment="Center" Width="210"  Margin="5,2" MaxLength="20" HorizontalAlignment="Center" />
+            <TextBlock Grid.Row="2" Margin="5,2" Text="Каталог" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <TextBox x:Name="NewCatalogName" Grid.Row="2" Grid.Column="1" Padding="2,2" VerticalAlignment="Center" Width="210"  Margin="5,2" MaxLength="20" HorizontalAlignment="Center" />
+            <StackPanel HorizontalAlignment="Center" Grid.Column="1" Grid.Row="3" Orientation="Horizontal">
+                <Button x:Name="AddButton"  HorizontalAlignment="Center" Content="Додати" Margin="5,0" Padding="5, 2" VerticalAlignment="Center" Click="AddButton_ClickAsync" />
+                <Button x:Name="SearchButton"  HorizontalAlignment="Center" Content="Пошук" Margin="5,0" Padding="5, 2" VerticalAlignment="Center" />
+                <Button x:Name="DeleteButton"  HorizontalAlignment="Center" Content="Видалити" Margin="5,0" Padding="5, 2" VerticalAlignment="Center" />
+            </StackPanel>
+            <Button Grid.Column="1" Grid.Row="4" x:Name="CancelButton"  HorizontalAlignment="Center" Content="Видалити" Margin="5,0" Padding="5, 2" VerticalAlignment="Center" Click="CancelButton_Click" />
+        </Grid>
     </Grid>
 </UserControl>

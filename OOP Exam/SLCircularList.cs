@@ -1,12 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 
 namespace OOP_Exam
 {
     public class ListNode<T>
     {
+        private ListNode<T> next;
+
         public T Data { get; private set; }
-        public ListNode<T> Next { get; private set; }
+        public ListNode<T> Next { 
+            get => next; 
+            set => next = value; }
         public ListNode(T data)
         {
             Data = data;
@@ -22,10 +27,12 @@ namespace OOP_Exam
         }
     };
 
-    public class SLcircularList<T> : IteratorAggregate
+    public class SLcircularList<T> : IteratorAggregate, INotifyCollectionChanged
     {
         public ListNode<T> StartNode { get; private set; }
         private ListNode<T> LastNode { get; set; }
+
+        public event NotifyCollectionChangedEventHandler CollectionChanged;
 
         public override IEnumerator GetEnumerator()
         {
@@ -39,24 +46,27 @@ namespace OOP_Exam
 
         public SLcircularList(T data)
         {
-            StartNode = new ListNode<T>(data, StartNode);
+            StartNode = new ListNode<T>(data);
+            StartNode.Next = StartNode;
             LastNode = StartNode;
         }
 
         public void AddToEnd(T data)
         {
-            ListNode<T> newNode = new ListNode<T>(data, StartNode);
+            ListNode<T> newNode = new ListNode<T>(data);
             if (StartNode == null)
             {
                 StartNode = newNode;
-                StartNode.SetNext(StartNode);
+                StartNode.Next = StartNode;
                 LastNode = StartNode;
             }
-            else
+            else lock(this)
             {
-                LastNode.SetNext(newNode);
+                newNode.Next = StartNode;
+                LastNode.Next = newNode;
                 LastNode = newNode;
             }
+            CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, newNode));
         }
 
         public void AddToBegin(T data)

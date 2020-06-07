@@ -12,6 +12,11 @@ namespace OOP_Exam
         {
             Name = name;
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 
     public class CompanyProvider
@@ -22,6 +27,8 @@ namespace OOP_Exam
         {
             Name = name;
         }
+
+
     }
 
     public class Catalog
@@ -40,6 +47,11 @@ namespace OOP_Exam
         {
             Name = name;
             Files = null;
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 
@@ -85,6 +97,10 @@ namespace OOP_Exam
         public CompanyProvider CompanyProvider { get; private set; }
         public Catalog Catalog { get; private set; }
 
+        public override string ToString()
+        {
+            return Person.ToString() + "," + CompanyProvider.ToString() + "," + Catalog.ToString();
+        }
         public CloudStorage()
         {
             Person = null;

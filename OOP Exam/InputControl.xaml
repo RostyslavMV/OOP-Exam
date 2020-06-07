@@ -15,7 +15,7 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
         <TextBlock Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="DemiBold" Text="Ввід даних" />
         <Button Grid.Row="1" x:Name="LoadDataButton"  HorizontalAlignment="Center" Content="Завантажити тестові дані" Margin="5,0" Padding="5, 2" VerticalAlignment="Center" Click="LoadDataButton_ClickAsync" />
@@ -23,7 +23,7 @@
         <Grid x:Name="InnerGrid" Grid.Row="2" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30" />

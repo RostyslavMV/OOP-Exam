@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Diagnostics;
 
 namespace OOP_Exam
 {
@@ -101,6 +102,11 @@ namespace OOP_Exam
         }
         public override object Current()
         {
+            current = list.StartNode;
+            for (int i =0; i < Position; i++)
+            {
+                current = current.Next;
+            }
             return current;
         }
 
@@ -111,33 +117,35 @@ namespace OOP_Exam
 
         public override bool MoveNext()
         {
+            Position++;
             if (list.StartNode == null)
             {
                 return false;
             }
             if (current == null)
             {
+              
                 current = list.StartNode;
-                Position = 0;
+                 System.Diagnostics.Debug.WriteLine(current.Data); 
                 return true;
             }
             if (current.Next != list.StartNode)
             {
                 current = current.Next;
-                Position++;
+                System.Diagnostics.Debug.WriteLine(current.Data); 
                 return true;
             }
-            if (current.Next == list.StartNode)
-            {
-                return false;
-            }
+            //if (current.Next == list.StartNode)
+            //{
+            //    return false;
+            //}
             return false;
         }
 
         public override void Reset()
         {
             this.Position = -1;
-            current = null;
+            //current = null;
         }
     }
 }

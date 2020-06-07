@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,22 +28,49 @@ namespace OOP_Exam
 
         private async void AddCollection_ClickAsync(object sender, RoutedEventArgs e)
         {
-            MainWindow.percentDone = 0;
-            DateTime start = DateTime.Now;
+            MainWindow.mainWindow.StartMethod("Циклічний список, вставка елементів з поточних даних");
             int count = MainWindow.CloudStorages.Count;
             int current = 1;
+            MainWindow.mainWindow.SLcircularList = new SLcircularList<CloudStorage>();
             await Task.Run(() =>
             {
                 foreach (var storage in MainWindow.CloudStorages)
                 {
-                    MainWindow.SLcircularList.AddToEnd(storage);
+                    MainWindow.mainWindow.SLcircularList.AddToEnd(storage);
                     MainWindow.percentDone = current * 100 / count;
                     current++;
+                    if (!MainWindow.mainWindow.run) return;
                 }
             });
-            TimeSpan time = DateTime.Now - start;
-            AddCollectionTime.Text = ((int)time.TotalMilliseconds).ToString() + "ms";
-            MainWindow.percentDone = 100;
+            MainWindow.mainWindow.EndMethod();
+            List.ItemsSource = MainWindow.mainWindow.SLcircularList;
+        }
+
+        private void ClearTextBoxes()
+        {
+            NewPersonName.Clear();
+            NewCompanyName.Clear();
+            NewCatalogName.Clear();
+        }
+
+        private async void AddButton_ClickAsync(object sender, RoutedEventArgs e)
+        {
+            string personName = NewPersonName.Text;
+            string providerName = NewCompanyName.Text;
+            string catalogName = NewCatalogName.Text;
+            MainWindow.mainWindow.StartMethod("Циклічний список, вставка елемента");
+            await Task.Run(() =>
+            {
+                MainWindow.mainWindow.SLcircularList.AddToEnd(new CloudStorage(personName, providerName, catalogName));
+            }
+            );
+            MainWindow.mainWindow.EndMethod();
+            ClearTextBoxes();
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            ClearTextBoxes();
         }
     }
 }
