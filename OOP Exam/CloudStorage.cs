@@ -71,8 +71,16 @@ namespace OOP_Exam
         }
     }
 
-    public class CloudStorage
+    public class CloudStorage : IComparable<CloudStorage>
     {
+        public enum FieldForComparing
+        {
+            Person,
+            CompanyProvider,
+            Catalog
+        }
+
+        public static FieldForComparing fieldForComparing { get; set; } = FieldForComparing.Person;
         public Person Person { get; private set; }
         public CompanyProvider CompanyProvider { get; private set; }
         public Catalog Catalog { get; private set; }
@@ -93,6 +101,22 @@ namespace OOP_Exam
 
         public CloudStorage(string personName, string companyName, string catalogName)
             : this(new Person(personName), new CompanyProvider(companyName), new Catalog(catalogName)) { }
+
+        public int CompareTo(CloudStorage other)
+        {
+            if (fieldForComparing == FieldForComparing.Person)
+            {
+                return this.Person.Name.CompareTo(other.Person.Name);
+            }
+            else if (fieldForComparing == FieldForComparing.CompanyProvider)
+            {
+                return this.CompanyProvider.Name.CompareTo(other.CompanyProvider.Name);
+            }
+            else
+            {
+                return this.Catalog.Name.CompareTo(other.Catalog.Name);
+            }
+        }
     }
 
 }

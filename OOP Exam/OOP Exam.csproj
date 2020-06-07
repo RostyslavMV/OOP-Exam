@@ -69,6 +69,9 @@
     <Compile Include="BPlusTree\RingArray.cs" />
     <Compile Include="BPlusTree\RingArrayConstraints.cs" />
     <Compile Include="BPlusTree\SparseArray.cs" />
+    <Compile Include="CircularListControl.xaml.cs">
+      <DependentUpon>CircularListControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Container.cs" />
     <Compile Include="HashTable.cs" />
     <Compile Include="HeapSort.cs" />
@@ -87,6 +90,10 @@
     <Compile Include="SeparateChainingHashTable.cs" />
     <Compile Include="Set.cs" />
     <Compile Include="SLCircularList.cs" />
+    <Page Include="CircularListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="InputControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

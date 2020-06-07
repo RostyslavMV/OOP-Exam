@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="OOP_Exam.CircularListControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:OOP_Exam"
+             mc:Ignorable="d" 
+             Background="White"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="DemiBold" Text="Циклічнй однозв'язний список" />
+        <DataGrid x:Name="List" Grid.Row="1"  Margin="0 3 0 0" Background="White" IsReadOnly="True" SelectionMode="Single" SelectionUnit="FullRow"
+             CanUserResizeRows="False" CanUserResizeColumns="False" AutoGenerateColumns="False" 
+             HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray" BorderThickness="0" Height="Auto" MinHeight="50" >
+            
+        </DataGrid>
+        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
+            <Button  x:Name="AddCollection" Content="Завантажити тестові дані" Margin="5,0" Padding="5, 2" VerticalAlignment="Center" Click="AddCollection_ClickAsync" />
+            <TextBlock x:Name="AddCollectionTime" VerticalAlignment="Center"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

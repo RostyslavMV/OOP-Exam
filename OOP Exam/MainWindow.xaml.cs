@@ -35,12 +35,14 @@ namespace OOP_Exam
         public static Collection<MenuItem> MenuItems { get; } = new Collection<MenuItem>();
         public static Collection<CloudStorage> CloudStorages { get; } = new Collection<CloudStorage>();
 
+        public static SLcircularList<CloudStorage> SLcircularList { get; } = new SLcircularList<CloudStorage>();
+
         public static ProgressBar progressBar { get; private set; }
 
         void InitItems()
         {
             MenuItems.Add(new MenuItem("Ввід даних", typeof(InputControl), "About"));
-            MenuItems.Add(new MenuItem("Циклічний список", typeof(UserControl), "About"));
+            MenuItems.Add(new MenuItem("Циклічний список", typeof(CircularListControl), "About"));
             MenuItems.Add(new MenuItem("Червоно-чорне дерево", typeof(UserControl), "About"));
             MenuItems.Add(new MenuItem("B+ Дерево", typeof(UserControl), "About"));
             MenuItems.Add(new MenuItem("Хеш, метод ланцюжків", typeof(UserControl), "About"));
