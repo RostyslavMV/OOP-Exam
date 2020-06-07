@@ -115,12 +115,14 @@ namespace OOP_Exam
 
         public void Remove(T data)
         {
+            ListNode<T> deleted;
             if (StartNode == null)
             {
                 throw new EntryNotFoundException();
             }
             if (EqualityComparer<T>.Default.Equals(StartNode.Data, data))
             {
+                deleted = StartNode;
                 if (LastNode == StartNode)
                 {
                     StartNode = null;
@@ -131,25 +133,28 @@ namespace OOP_Exam
                     StartNode = StartNode.Next;
                     LastNode.SetNext(StartNode);
                 }
-                CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, StartNode));
+                CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, deleted, 0));
             }
             else
             {
+                int index = 1;
                 ListNode<T> current = StartNode.Next;
                 ListNode<T> prev = StartNode;
-                while (current != LastNode)
+                while (current != StartNode)
                 {
                     if (EqualityComparer<T>.Default.Equals(current.Data, data))
                     {
+                        //ListNode<T> deleted = ;
                         prev.SetNext(current.Next);
                         if (current == LastNode)
                         {
                             prev.SetNext(StartNode);
                             LastNode = prev;
                         }
-                        CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, current));
+                        CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, current, index));
                         return;
                     }
+                    index++;
                     prev = current;
                     current = current.Next;
                 }
@@ -159,6 +164,7 @@ namespace OOP_Exam
         public ListNode<T> Search(T data)
         {
             ListNode<T> current = StartNode;
+            if (current == null) return null;
             while (current != LastNode)
             {
                 if (EqualityComparer<T>.Default.Equals(current.Data, data))

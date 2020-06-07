@@ -124,6 +124,7 @@ namespace OOP_Exam
         }
         public  bool Equals(CloudStorage other)
         {
+            if (other == null && this != null || this == null&& other!=null) return false;
             return Person.Name == other.Person.Name && CompanyProvider.Name == other.CompanyProvider.Name && Catalog.Name == other.Catalog.Name;
         }
         public int CompareTo(CloudStorage other)

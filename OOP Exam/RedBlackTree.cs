@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace OOP_Exam
 {
@@ -337,8 +338,8 @@ namespace OOP_Exam
                     x = (RedBlackTreeNode<T>)x.Left;
                 else if (c > 0)
                     x = (RedBlackTreeNode<T>)x.Right;
-                else
-                    throw new EntryAlreadyExistsException();
+                else return null;
+                    //throw new EntryAlreadyExistsException();
             }
 
             Direction From = c < 0 ? Direction.FromLeft : Direction.FromRight;
@@ -352,7 +353,8 @@ namespace OOP_Exam
             for (; ; )
             {
                 if (root == null)
-                    throw new EntryNotFoundException();
+                    return;
+                    //throw new EntryNotFoundException();
 
                 int Compare = Comparer.Compare(Key, root.Data);
 
@@ -394,7 +396,19 @@ namespace OOP_Exam
                 return search;
             }
         }
+
+        public Collection<T> ToCollection()
+        {
+            Collection<T> collection = new Collection<T>();
+            foreach (RedBlackTreeNode<T> node in this)
+            {
+                if (node.Data != null)
+                    collection.Add(node.Data);
+            }
+            return collection;
+        }
     }
+
     public class EntryNotFoundException : Exception
     {
         static String message = "The requested entry could not be located in the specified collection.";

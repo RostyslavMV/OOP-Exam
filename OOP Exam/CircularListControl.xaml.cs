@@ -94,10 +94,9 @@ namespace OOP_Exam
         {
             string personName = NewPersonName.Text;
             string providerName = NewCompanyName.Text;
-            string catalogName = NewCatalogName.Text;
-            MainWindow.mainWindow.StartMethod("Циклічний список, видалення елемента");
+            string catalogName = NewCatalogName.Text;           
             List.BeginInit();
-            MainWindow.mainWindow.StartMethod("Циклічний список, вставка елемента");
+            MainWindow.mainWindow.StartMethod("Циклічний список, видалення елемента");
             await Task.Run(() =>
             {
                 Dispatcher.Invoke(() =>

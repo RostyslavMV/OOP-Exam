@@ -42,6 +42,7 @@ namespace OOP_Exam
 
         public SLcircularList<CloudStorage> SLcircularList { get; set; } = new SLcircularList<CloudStorage>();
 
+        public RedBlackTree<CloudStorage> RedBlackTree { get; set; } = new RedBlackTree<CloudStorage>();
         public static ProgressBar progressBar { get; private set; }
 
         private static string lastMethodName;
@@ -88,7 +89,7 @@ namespace OOP_Exam
         {
             MenuItems.Add(new MenuItem("Ввід даних", typeof(InputControl), "About"));
             MenuItems.Add(new MenuItem("Циклічний список", typeof(CircularListControl), "List.html"));
-            MenuItems.Add(new MenuItem("Червоно-чорне дерево", typeof(UserControl), "About"));
+            MenuItems.Add(new MenuItem("Червоно-чорне дерево", typeof(RedBlackTreeControl), "About"));
             MenuItems.Add(new MenuItem("B+ Дерево", typeof(UserControl), "About"));
             MenuItems.Add(new MenuItem("Хеш, метод ланцюжків", typeof(UserControl), "About"));
             MenuItems.Add(new MenuItem("Хеш, квадратичне зондування", typeof(UserControl), "About"));
