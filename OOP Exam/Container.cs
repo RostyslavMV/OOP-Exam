@@ -15,6 +15,11 @@ namespace OOP_Exam
         private Dictionary<TKey, TValue> dictionary = new Dictionary<TKey, TValue>();
         private TValue[] sortedValues;
 
+        public Container()
+        {
+
+        }
+
         public Container(RedBlackTree<TValue> redBlackTree, Collection<TKey> keys)
         {
             int i = 0;
@@ -143,6 +148,11 @@ namespace OOP_Exam
             }
             SortValues(comparer);
             return SubArray(sortedValues, 0, number - 1);
+        }
+
+        public Dictionary<TKey, TValue> ToDictionary()
+        {
+            return dictionary;
         }
     }
 }

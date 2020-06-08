@@ -62,6 +62,8 @@ namespace OOP_Exam
 
         public Collection<int> sortedCollection { get; set; } = new Collection<int>();
 
+        public Container<int, CloudStorage> container = new Container<int, CloudStorage>();
+
         public static ProgressBar progressBar { get; private set; }
 
         private static string lastMethodName;
@@ -113,7 +115,7 @@ namespace OOP_Exam
             MenuItems.Add(new MenuItem("Хеш, метод ланцюжків", typeof(ChainingHashControl), "ChainingHash.html"));
             MenuItems.Add(new MenuItem("Хеш, квадратичне зондування", typeof(QuadraticHashControl), "QuadraticHash.html"));
             MenuItems.Add(new MenuItem("Алгоритми сортування", typeof(SortAlgosControl), "SortAlgos.html"));
-            MenuItems.Add(new MenuItem("Контейнер", typeof(UserControl), "About"));
+            MenuItems.Add(new MenuItem("Контейнер", typeof(ContainerControl), "About"));
             MenuItems.Add(new MenuItem("Множина", typeof(UserControl), "About"));
         }
 
