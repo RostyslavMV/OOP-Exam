@@ -42,7 +42,7 @@ namespace OOP_Exam
             int current = 1;
             MainWindow.mainWindow.chainingHashTable = new SeparateChainingHashTable<int, CloudStorage>();
             DataGrid.BeginInit();
-            MainWindow.mainWindow.StartMethod("Хеш таблиця (метод ланцюжків), вставка елементів з поточних даних");
+            MainWindow.mainWindow.StartMethod("Хеш таблиця (квадратичне зондування), вставка елементів з поточних даних");
             await Task.Run(() =>
             {
                 foreach (var storage in MainWindow.CloudStorages)
@@ -70,7 +70,7 @@ namespace OOP_Exam
                 key = DataGrid.Items.Count + 1;
             }
             DataGrid.BeginInit();
-            MainWindow.mainWindow.StartMethod("Хеш таблиця (метод ланцюжків), вставка елемента");
+            MainWindow.mainWindow.StartMethod("Хеш таблиця (квадратичне зондування), вставка елемента");
             await Task.Run(() =>
             {
                 // Dispatcher.Invoke(() =>
@@ -96,7 +96,7 @@ namespace OOP_Exam
                 Dispatcher.Invoke(() => SearchResult.Text = "Не найдено");
                 return;
             }
-            MainWindow.mainWindow.StartMethod("Хеш таблиця (метод ланцюжків), пошук елемента");
+            MainWindow.mainWindow.StartMethod("Хеш таблиця (квадратичне зондування), пошук елемента");
             await Task.Run(() =>
             {
                 CloudStorage resValue = MainWindow.mainWindow.chainingHashTable.Get(key);
@@ -121,7 +121,7 @@ namespace OOP_Exam
                 return;
             }
             DataGrid.BeginInit();
-            MainWindow.mainWindow.StartMethod("Хеш таблиця (метод ланцюжків), видалення елемента");
+            MainWindow.mainWindow.StartMethod("Хеш таблиця (квадратичне зондування), видалення елемента");
             await Task.Run(() =>
             {
                 Dispatcher.Invoke(() => MainWindow.mainWindow.chainingHashTable.Remove(key));
