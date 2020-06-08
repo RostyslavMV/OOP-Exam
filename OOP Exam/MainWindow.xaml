@@ -30,6 +30,7 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
+            <Button x:Name="About" Content="About" Grid.Row="2" VerticalAlignment="Center" Width="100" Margin="5, 0" HorizontalAlignment="Left" Click="About_Click" />
             <Button Grid.Column="1" HorizontalAlignment="Left" Content="Тест асинхронної функції" Padding="5, 2" VerticalAlignment="Center" Click="Button_ClickAsync"></Button>
             <Button x:Name="Stop" Grid.Column="1" HorizontalAlignment="Right" Content="Стоп" Padding="5, 2" VerticalAlignment="Center" Click="Stop_Click" ></Button>
             <ItemsControl Margin="0,4" ItemsSource="{Binding MenuItems}" Grid.RowSpan="2">

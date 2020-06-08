@@ -106,6 +106,9 @@
     <Compile Include="SeparateChaining2ChoiceHashTable.cs" />
     <Compile Include="SeparateChainingHashTable.cs" />
     <Compile Include="Set.cs" />
+    <Compile Include="SetControl.xaml.cs">
+      <DependentUpon>SetControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SLCircularList.cs" />
     <Compile Include="SortAlgosControl.xaml.cs">
       <DependentUpon>SortAlgosControl.xaml</DependentUpon>
@@ -152,6 +155,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SetControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SortAlgosControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -184,9 +191,21 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="HTML\About.html">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="HTML\BPlus.html" />
+    <Content Include="HTML\ChainingHash.html" />
+    <Content Include="HTML\Container.html" />
+    <Content Include="HTML\Input.html" />
     <Content Include="HTML\List.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="HTML\QuadraticHash.html" />
+    <Content Include="HTML\RB.html" />
+    <Content Include="HTML\Set.html" />
+    <Content Include="HTML\SortAlgos.html" />
+    <Content Include="HTML\Test.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

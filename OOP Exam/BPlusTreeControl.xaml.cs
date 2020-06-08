@@ -66,7 +66,7 @@ namespace OOP_Exam
                 // {
                 try
                 {
-                    MainWindow.mainWindow.BPTree.Add(key, new CloudStorage(personName, providerName, catalogName));
+                    MainWindow.mainWindow.BPTree.AddOrReplace(key, new CloudStorage(personName, providerName, catalogName));
                 }
                 catch
                 {

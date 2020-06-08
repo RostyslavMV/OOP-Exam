@@ -23,6 +23,7 @@ namespace OOP_Exam
         public Container(RedBlackTree<TValue> redBlackTree, Collection<TKey> keys)
         {
             int i = 0;
+            if (keys.Count == 0) return;
             foreach (RedBlackTreeNode<TValue> node in redBlackTree)
             {
                 var currentKey = keys[i];

@@ -43,6 +43,7 @@ namespace OOP_Exam
                 sortedCollection.Add(newNumber);
             }
             mainWindow = this;
+            OpenAbout();
         }
 
         public static Collection<MenuItem> MenuItems { get; } = new Collection<MenuItem>();
@@ -108,15 +109,15 @@ namespace OOP_Exam
 
         void InitItems()
         {
-            MenuItems.Add(new MenuItem("Ввід даних", typeof(InputControl), "About.html"));
+            MenuItems.Add(new MenuItem("Ввід даних", typeof(InputControl), "Input.html"));
             MenuItems.Add(new MenuItem("Циклічний список", typeof(CircularListControl), "List.html"));
             MenuItems.Add(new MenuItem("Червоно-чорне дерево", typeof(RedBlackTreeControl), "RB.html"));
             MenuItems.Add(new MenuItem("B+ Дерево", typeof(BPlusTreeControl), "BPlus.html"));
             MenuItems.Add(new MenuItem("Хеш, метод ланцюжків", typeof(ChainingHashControl), "ChainingHash.html"));
             MenuItems.Add(new MenuItem("Хеш, квадратичне зондування", typeof(QuadraticHashControl), "QuadraticHash.html"));
             MenuItems.Add(new MenuItem("Алгоритми сортування", typeof(SortAlgosControl), "SortAlgos.html"));
-            MenuItems.Add(new MenuItem("Контейнер", typeof(ContainerControl), "About"));
-            MenuItems.Add(new MenuItem("Множина", typeof(UserControl), "About"));
+            MenuItems.Add(new MenuItem("Контейнер", typeof(ContainerControl), "Container.html"));
+            MenuItems.Add(new MenuItem("Множини", typeof(SetControl), "Set.html"));
         }
 
         Collection<int> data = new Collection<int>();
@@ -187,6 +188,22 @@ namespace OOP_Exam
         protected void OnPropertyChanged([CallerMemberName] string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        private void OpenAbout()
+        {
+            string curDir = Directory.GetCurrentDirectory();
+            var path = "HTML/About.html";
+            if (System.IO.File.Exists(path))
+            {
+                Browser.Navigate(String.Format("file:///{0}/" + path, curDir));
+            }
+            else Browser.Navigate("about:blank");
+        }
+
+        private void About_Click(object sender, RoutedEventArgs e)
+        {
+            OpenAbout();
         }
     }
 }
