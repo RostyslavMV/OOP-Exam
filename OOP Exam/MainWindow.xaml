@@ -9,7 +9,8 @@
         MinWidth="1440"
         MinHeight="450"
         WindowState="Maximized"
-        Title="MainWindow" Height="450" Width="1440">
+        Icon="exam.ico"
+        Title="Екзаменаційна робота" Height="450" Width="1440">
     <DockPanel>
         <StatusBar DockPanel.Dock="Bottom" >
             <StatusBarItem>
@@ -26,13 +27,15 @@
                 <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*" MinWidth="100"/>
+                <ColumnDefinition Width="2*" MinWidth="300"/>
+                <ColumnDefinition Width="1*" MinWidth="200"/>
             </Grid.ColumnDefinitions>
+            <GridSplitter Grid.RowSpan="3" HorizontalAlignment="Right" Width="5"  />
+            <GridSplitter Grid.RowSpan="3" Grid.Column="2" HorizontalAlignment="Left" Width="5"  />
             <Button x:Name="About" Content="About" Grid.Row="2" VerticalAlignment="Center" Width="100" Margin="5, 0" HorizontalAlignment="Left" Click="About_Click" />
-            <Button Grid.Column="1" HorizontalAlignment="Left" Content="Тест асинхронної функції" Padding="5, 2" VerticalAlignment="Center" Click="Button_ClickAsync"></Button>
-            <Button x:Name="Stop" Grid.Column="1" HorizontalAlignment="Right" Content="Стоп" Padding="5, 2" VerticalAlignment="Center" Click="Stop_Click" ></Button>
+            <Button Margin="5 0" Grid.Column="1" HorizontalAlignment="Left" Content="Тест асинхронної функції" Padding="5, 2" VerticalAlignment="Center" Click="Button_ClickAsync"></Button>
+            <Button Margin="5 0" x:Name="Stop" Grid.Column="1" HorizontalAlignment="Right" Content="Стоп" Padding="5, 2" VerticalAlignment="Center" Click="Stop_Click" ></Button>
             <ItemsControl Margin="0,4" ItemsSource="{Binding MenuItems}" Grid.RowSpan="2">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -43,7 +46,7 @@
             </ItemsControl>
             <Border x:Name="CurrentControlBorder" Grid.Column="1" Grid.Row="1">
             </Border>
-            <WebBrowser x:Name="Browser" Grid.RowSpan="2" Grid.Column="2">
+            <WebBrowser Margin="5 0 0 0" x:Name="Browser" Grid.RowSpan="2" Grid.Column="2">
 
             </WebBrowser>
             <ProgressBar x:Name="pb" VerticalAlignment="Bottom" Margin="0,5" Grid.Column="1" Grid.Row="2" Height="10"/>

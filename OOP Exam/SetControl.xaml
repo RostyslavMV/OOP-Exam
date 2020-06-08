@@ -5,8 +5,57 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:OOP_Exam"
              mc:Ignorable="d" 
+             Background="White"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="DemiBold" Text="Множини" />
+        <TextBlock Grid.Row="1"  Text="Множина на основі червоно-чорного дерева" HorizontalAlignment="Center" />
+        <TextBlock Grid.Row="1" Grid.Column="1"  Text="Множина на основі циклічного списку" HorizontalAlignment="Center" />
+        <GridSplitter Width="5" HorizontalAlignment="Right" Grid.Row="1" Grid.RowSpan="3"></GridSplitter>
+        <GridSplitter Height="5" VerticalAlignment="Bottom" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch"></GridSplitter>
+        <DataGrid x:Name="DataGrid1" Grid.Row="2" Grid.RowSpan="2"  Margin="0 3 5 5" Background="White" IsReadOnly="True" SelectionMode="Single" SelectionUnit="FullRow"
+             CanUserResizeRows="False" CanUserResizeColumns="True" AutoGenerateColumns="False"
+             HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray" BorderThickness="0" Height="Auto" MinHeight="50"  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Header="Name" x:Name="PersonName" Binding="{Binding Person.Name}" />
+                <DataGridTextColumn Width="*" Header="Company" x:Name="CompanyName" Binding="{Binding CompanyProvider.Name}" />
+                <DataGridTextColumn Width="2*" Header="Catalog" x:Name="CatalogName" Binding="{Binding Catalog.Name}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid x:Name="DataGrid2" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2"  Margin="0 3 5 5" Background="White" IsReadOnly="True" SelectionMode="Single" SelectionUnit="FullRow"
+             CanUserResizeRows="False" CanUserResizeColumns="True" AutoGenerateColumns="False"
+             HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray" BorderThickness="0" Height="Auto" MinHeight="50"  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Header="Name" x:Name="PersonName2" Binding="{Binding Person.Name}" />
+                <DataGridTextColumn Width="*" Header="Company" x:Name="CompanyName2" Binding="{Binding CompanyProvider.Name}" />
+                <DataGridTextColumn Width="2*" Header="Catalog" x:Name="CatalogName2" Binding="{Binding Catalog.Name}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Width="100" Grid.Row="4" HorizontalAlignment="Left">
+            <Button Margin="5 5 5 0" x:Name="Union" Content="Union" VerticalAlignment="Center" Click="Union_ClickAsync"  />
+            <Button Margin="5 5 5 0" x:Name="Intersect" Content="Intersect" VerticalAlignment="Center" Click="Intersect_ClickAsync" />
+            <Button Margin="5 5 5 0" x:Name="Except" Content="Except" VerticalAlignment="Center" Click="Except_ClickAsync"  />
+            <Button Margin="5 5 5 0" x:Name="SymmetricExcept" Content="SymmetricExcept" VerticalAlignment="Center" Click="SymmetricExcept_ClickAsync" />
+        </StackPanel>
+        <DataGrid x:Name="DataGrid3" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2"  Margin="100 3 5 5" Background="White" IsReadOnly="True" SelectionMode="Single" SelectionUnit="FullRow"
+             CanUserResizeRows="False" CanUserResizeColumns="True" AutoGenerateColumns="False"
+             HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray" BorderThickness="0" Height="Auto" MinHeight="50"  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Header="Name" x:Name="PersonName3" Binding="{Binding Person.Name}" />
+                <DataGridTextColumn Width="*" Header="Company" x:Name="CompanyName3" Binding="{Binding CompanyProvider.Name}" />
+                <DataGridTextColumn Width="2*" Header="Catalog" x:Name="CatalogName3" Binding="{Binding Catalog.Name}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

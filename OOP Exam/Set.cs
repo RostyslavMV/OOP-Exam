@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Drawing.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +22,8 @@ namespace OOP_Exam
         {
             foreach (RedBlackTreeNode<TValue> element in redBlackTree)
             {
-                set.Add(element.Data);
+                if (element.Data != null)
+                    set.Add(element.Data);
             }
         }
 
@@ -37,7 +39,8 @@ namespace OOP_Exam
         {
             foreach (ListNode<TValue> element in list)
             {
-                set.Add(element.Data);
+                if (element != null)
+                    set.Add(element.Data);
             }
         }
 
@@ -75,7 +78,7 @@ namespace OOP_Exam
         {
             set.Add(value);
         }
-        
+
         public void Remove(TValue value)
         {
             set.Remove(value);
@@ -103,6 +106,11 @@ namespace OOP_Exam
         {
             set.SymmetricExceptWith(other.set);
             return this;
+        }
+
+        public IEnumerable<TValue> ToArray()
+        {
+            return set.ToArray();
         }
     }
 }

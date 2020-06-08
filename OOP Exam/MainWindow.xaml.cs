@@ -65,6 +65,9 @@ namespace OOP_Exam
 
         public Container<int, CloudStorage> container = new Container<int, CloudStorage>();
 
+        public Set<CloudStorage> set1 { get; set; }
+        public Set<CloudStorage> set2 { get; set; }
+
         public static ProgressBar progressBar { get; private set; }
 
         private static string lastMethodName;

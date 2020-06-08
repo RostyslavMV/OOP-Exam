@@ -127,6 +127,11 @@ namespace OOP_Exam
             if (other == null && this != null || this == null&& other!=null) return false;
             return Person.Name == other.Person.Name && CompanyProvider.Name == other.CompanyProvider.Name && Catalog.Name == other.Catalog.Name;
         }
+
+        public override int GetHashCode()
+        {
+            return Person.Name.GetHashCode() + CompanyProvider.Name.GetHashCode()+Catalog.Name.GetHashCode();
+        }
         public int CompareTo(CloudStorage other)
         {
             if (fieldForComparing == FieldForComparing.Person)
