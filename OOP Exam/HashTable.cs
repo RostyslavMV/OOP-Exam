@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,6 +30,8 @@ namespace OOP_Exam
 
         public abstract TValue Remove(TKey key);
         protected abstract void Add(HashNode<TKey, TValue> node);
+
+        public abstract Collection<KeyValuePair<TKey, TValue>> ToCollection();
         protected int GetHash(TKey key)
         {
             return key.GetHashCode() % NumberOfCells;

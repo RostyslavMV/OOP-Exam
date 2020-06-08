@@ -6,9 +6,10 @@
         xmlns:local="clr-namespace:OOP_Exam"
         mc:Ignorable="d"
         FontSize="14"
-        MinWidth="900"
+        MinWidth="1440"
+        MinHeight="450"
         WindowState="Maximized"
-        Title="MainWindow" Height="450" Width="900">
+        Title="MainWindow" Height="450" Width="1440">
     <DockPanel>
         <StatusBar DockPanel.Dock="Bottom" >
             <StatusBarItem>

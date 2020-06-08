@@ -31,6 +31,7 @@ namespace OOP_Exam
             var lines = System.IO.File.ReadLines(fileName);
             int count = lines.Count();
             int current = 1;
+            MainWindow.mainWindow.StartMethod("Зчитування 30 записів з файлу");
             foreach (var line in lines)
             {
                 string[] spearator = { "  " };
@@ -39,7 +40,9 @@ namespace OOP_Exam
                 MainWindow.CloudStorages.Add(new CloudStorage(strlist[0], strlist[1], strlist[2]));
                 MainWindow.percentDone = current * 100 / count;
                 current++;
+                if (!MainWindow.mainWindow.run) return;
             }
+            MainWindow.mainWindow.EndMethod();
         }
 
         private async void LoadDataButton_ClickAsync(object sender, RoutedEventArgs e)

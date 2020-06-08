@@ -19,7 +19,7 @@
         </Grid.ColumnDefinitions>
         <TextBlock Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="DemiBold" Text="B+ дерево" />
         <DataGrid x:Name="DataGrid" Grid.Row="1" Grid.RowSpan="2"  Margin="0 3 0 0" Background="White" IsReadOnly="True" SelectionMode="Single" SelectionUnit="FullRow"
-             CanUserResizeRows="False" CanUserResizeColumns="False" AutoGenerateColumns="False"
+             CanUserResizeRows="False" CanUserResizeColumns="True" AutoGenerateColumns="False"
              HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Gray" BorderThickness="0" Height="Auto" MinHeight="50"  >
             <DataGrid.Columns>
                 <DataGridTextColumn Width="0.4*" Header="Key" x:Name="Key" Binding="{Binding Key}" />

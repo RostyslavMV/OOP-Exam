@@ -77,5 +77,18 @@ namespace OOP_Exam
             }
             return default;
         }
+
+        public override Collection<KeyValuePair<TKey, TValue>> ToCollection()
+        {
+            Collection<KeyValuePair<TKey, TValue>> collection = new Collection<KeyValuePair<TKey, TValue>>();
+            foreach (var row in hashTable)
+            {
+                foreach (HashNode<TKey, TValue> node in row)
+                {
+                    collection.Add(new KeyValuePair<TKey, TValue>(node.Key, node.Value));
+                }
+            }
+            return collection;
+        }
     }
 }

@@ -75,5 +75,16 @@ namespace OOP_Exam
         {
             return (key.GetHashCode() + i * i) % NumberOfCells;
         }
+
+        public override Collection<KeyValuePair<TKey, TValue>> ToCollection()
+        {
+            Collection<KeyValuePair<TKey, TValue>> collection = new Collection<KeyValuePair<TKey, TValue>>();
+            for (int i = 0; i < NumberOfCells; i++)
+            {
+                if (hashTable[i]!=null)
+                collection.Add(new KeyValuePair<TKey, TValue>(hashTable[i].Key, hashTable[i].Value));
+            }
+            return collection;
+        }
     }
 }
