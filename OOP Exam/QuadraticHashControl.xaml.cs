@@ -7,14 +7,14 @@ using System.Windows.Input;
 namespace OOP_Exam
 {
     /// <summary>
-    /// Interaction logic for ChainingHashControl.xaml
+    /// Interaction logic for QuadraticHashControl.xaml
     /// </summary>
-    public partial class ChainingHashControl : UserControl
+    public partial class QuadraticHashControl : UserControl
     {
-        public ChainingHashControl()
+        public QuadraticHashControl()
         {
             InitializeComponent();
-            DataGrid.ItemsSource = MainWindow.mainWindow.chainingHashTable.ToCollection();
+            DataGrid.ItemsSource = MainWindow.mainWindow.quadraticHashTable.ToCollection();
         }
         private void ClearTextBoxes()
         {
@@ -40,14 +40,14 @@ namespace OOP_Exam
         {
             int count = MainWindow.CloudStorages.Count;
             int current = 1;
-            MainWindow.mainWindow.chainingHashTable = new SeparateChainingHashTable<int, CloudStorage>();
+            MainWindow.mainWindow.quadraticHashTable = new QuadraticHashTable<int, CloudStorage>();
             DataGrid.BeginInit();
             MainWindow.mainWindow.StartMethod("Хеш таблиця (метод ланцюжків), вставка елементів з поточних даних");
             await Task.Run(() =>
             {
                 foreach (var storage in MainWindow.CloudStorages)
                 {
-                    MainWindow.mainWindow.chainingHashTable.Add(current, storage);
+                    MainWindow.mainWindow.quadraticHashTable.Add(current, storage);
                     MainWindow.percentDone = current * 100 / count;
                     current++;
                     if (!MainWindow.mainWindow.run) return;
@@ -56,7 +56,7 @@ namespace OOP_Exam
             MainWindow.mainWindow.EndMethod();
             DataGrid.EndInit();
             DataGrid.ItemsSource = null;
-            DataGrid.ItemsSource = MainWindow.mainWindow.chainingHashTable.ToCollection();
+            DataGrid.ItemsSource = MainWindow.mainWindow.quadraticHashTable.ToCollection();
         }
 
         private async void AddButton_ClickAsync(object sender, RoutedEventArgs e)
@@ -76,7 +76,7 @@ namespace OOP_Exam
                 // Dispatcher.Invoke(() =>
                 // {
 
-                MainWindow.mainWindow.chainingHashTable.Add(key, new CloudStorage(personName, providerName, catalogName));
+                MainWindow.mainWindow.quadraticHashTable.Add(key, new CloudStorage(personName, providerName, catalogName));
                 //}
                 // }
                 // );
@@ -84,7 +84,7 @@ namespace OOP_Exam
             MainWindow.mainWindow.EndMethod();
             DataGrid.EndInit();
             DataGrid.ItemsSource = null;
-            DataGrid.ItemsSource = MainWindow.mainWindow.chainingHashTable.ToCollection();
+            DataGrid.ItemsSource = MainWindow.mainWindow.quadraticHashTable.ToCollection();
             ClearTextBoxes();
         }
 
@@ -99,7 +99,7 @@ namespace OOP_Exam
             MainWindow.mainWindow.StartMethod("Хеш таблиця (метод ланцюжків), пошук елемента");
             await Task.Run(() =>
             {
-                CloudStorage resValue = MainWindow.mainWindow.chainingHashTable.Get(key);
+                CloudStorage resValue = MainWindow.mainWindow.quadraticHashTable.Get(key);
                 if (resValue != null)
                 {
                     Dispatcher.Invoke(() => SearchResult.Text = "Знайдено: " + resValue.Person.Name + ", " +
@@ -124,27 +124,13 @@ namespace OOP_Exam
             MainWindow.mainWindow.StartMethod("Хеш таблиця (метод ланцюжків), видалення елемента");
             await Task.Run(() =>
             {
-                Dispatcher.Invoke(() => MainWindow.mainWindow.chainingHashTable.Remove(key));
+                Dispatcher.Invoke(() => MainWindow.mainWindow.quadraticHashTable.Remove(key));
             });
             MainWindow.mainWindow.EndMethod();
             DataGrid.EndInit();
             DataGrid.ItemsSource = null;
-            DataGrid.ItemsSource = MainWindow.mainWindow.chainingHashTable.ToCollection();
+            DataGrid.ItemsSource = MainWindow.mainWindow.quadraticHashTable.ToCollection();
             ClearTextBoxes();
-        }
-
-        private void TwoChoice_Checked(object sender, RoutedEventArgs e)
-        {
-            MainWindow.mainWindow.chainingHashTable = new SeparateChaining2ChoiceHashTable<int, CloudStorage>();
-            DataGrid.ItemsSource = null;
-            DataGrid.ItemsSource = MainWindow.mainWindow.chainingHashTable.ToCollection();
-        }
-
-        private void TwoChoice_Unchecked(object sender, RoutedEventArgs e)
-        {
-            MainWindow.mainWindow.chainingHashTable = new SeparateChainingHashTable<int, CloudStorage>();
-            DataGrid.ItemsSource = null;
-            DataGrid.ItemsSource = MainWindow.mainWindow.chainingHashTable.ToCollection();
         }
     }
 }

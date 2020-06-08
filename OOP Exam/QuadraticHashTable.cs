@@ -61,6 +61,11 @@ namespace OOP_Exam
             {
                 for (int i = 1; i < NumberOfCells*10; i++)
                 {
+                    if (EqualityComparer<TKey>.Default.Equals(node.Key, hashTable[index].Key))
+                    {
+                        hashTable[index].Value = node.Value;
+                        return;
+                    }
                     index = GetHash(node.Key, i);
                     if (hashTable[index] == null)
                     {
