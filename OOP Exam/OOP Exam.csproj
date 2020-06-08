@@ -37,6 +37,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,6 +57,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BPlusTreeControl.xaml.cs">
+      <DependentUpon>BPlusTreeControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BPlusTree\BPTree.cs" />
     <Compile Include="BPlusTree\Builder.cs" />
     <Compile Include="BPlusTree\DebugView.cs" />
@@ -93,6 +98,10 @@
     <Compile Include="SeparateChainingHashTable.cs" />
     <Compile Include="Set.cs" />
     <Compile Include="SLCircularList.cs" />
+    <Page Include="BPlusTreeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CircularListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

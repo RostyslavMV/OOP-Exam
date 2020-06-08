@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 
@@ -192,6 +193,16 @@ namespace OOP_Exam.BPlusTree
             {
                 ReverseLinkList = ReverseLinkList.Next;
             }
+        }
+
+        public Collection<KeyValuePair<TKey,TValue>> ToCollection()
+        {
+            Collection<KeyValuePair<TKey, TValue>> collection = new Collection<KeyValuePair<TKey, TValue>>();
+            foreach(var element in this.AsPairEnumerable())
+            {
+                collection.Add(new KeyValuePair<TKey, TValue>(element.Key, element.Value));
+            }
+            return collection;
         }
 
         #endregion

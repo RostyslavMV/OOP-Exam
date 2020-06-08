@@ -99,7 +99,7 @@ namespace OOP_Exam
 
         public override string ToString()
         {
-            return Person.ToString() + "," + CompanyProvider.ToString() + "," + Catalog.ToString();
+            return Person.ToString() + ", " + CompanyProvider.ToString() + ", " + Catalog.ToString();
         }
         public CloudStorage()
         {
