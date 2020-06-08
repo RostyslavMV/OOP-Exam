@@ -35,6 +35,13 @@ namespace OOP_Exam
             InitItems();
             DataContext = this;
             progressBar = pb;
+            Random random = new Random();
+            for (int i = 0; i < 10000; i++)
+            {
+                var newNumber = random.Next(0, 10000000);
+                collectionForSort.Add(newNumber);
+                sortedCollection.Add(newNumber);
+            }
             mainWindow = this;
         }
 
@@ -47,9 +54,13 @@ namespace OOP_Exam
 
         public BPTree<int, CloudStorage> BPTree { get; set; } = new BPTree<int, CloudStorage>();
 
-        public HashTable<int, CloudStorage> chainingHashTable = new SeparateChainingHashTable<int, CloudStorage>();
+        public HashTable<int, CloudStorage> chainingHashTable { get; set; } = new SeparateChainingHashTable<int, CloudStorage>();
 
-        public QuadraticHashTable<int, CloudStorage> quadraticHashTable = new QuadraticHashTable<int, CloudStorage>();
+        public QuadraticHashTable<int, CloudStorage> quadraticHashTable { get; set; } = new QuadraticHashTable<int, CloudStorage>();
+
+        public Collection<int> collectionForSort { get; set; } = new Collection<int>();
+
+        public Collection<int> sortedCollection { get; set; } = new Collection<int>();
 
         public static ProgressBar progressBar { get; private set; }
 
@@ -69,7 +80,7 @@ namespace OOP_Exam
         private string lastMethodTimeText;
         public string LastMethodTimeText
         {
-            get => lastMethodTimeText; 
+            get => lastMethodTimeText;
             set
             {
                 lastMethodTimeText = value;
@@ -89,7 +100,7 @@ namespace OOP_Exam
         {
             TimeSpan time = DateTime.Now - LastMethodStart;
             run = false;
-            percentDone = 100;       
+            percentDone = 100;
             LastMethodTimeText = ((int)time.TotalMilliseconds).ToString() + "ms";
         }
 
@@ -101,7 +112,7 @@ namespace OOP_Exam
             MenuItems.Add(new MenuItem("B+ Дерево", typeof(BPlusTreeControl), "BPlus.html"));
             MenuItems.Add(new MenuItem("Хеш, метод ланцюжків", typeof(ChainingHashControl), "ChainingHash.html"));
             MenuItems.Add(new MenuItem("Хеш, квадратичне зондування", typeof(QuadraticHashControl), "QuadraticHash.html"));
-            MenuItems.Add(new MenuItem("Алгоритми сортування", typeof(UserControl), "About"));
+            MenuItems.Add(new MenuItem("Алгоритми сортування", typeof(SortAlgosControl), "SortAlgos.html"));
             MenuItems.Add(new MenuItem("Контейнер", typeof(UserControl), "About"));
             MenuItems.Add(new MenuItem("Множина", typeof(UserControl), "About"));
         }

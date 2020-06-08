@@ -16,7 +16,8 @@ namespace OOP_Exam
             {
                 T key = collection[i];
                 int j = i - 1;
-
+                MainWindow.percentDone = i * 100 / n;
+                if (!MainWindow.mainWindow.run) return collection;
                 // Move elements of arr[0..i-1], 
                 // that are greater than key, 
                 // to one position ahead of 
