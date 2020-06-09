@@ -45,7 +45,7 @@
     <div>
       <h2 style="text-align: center; margin-top: 15px;">Циклічний однозв'язний список</h2>
       <img style="width: 100%; margin-bottom: 10px;" src="https://media.geeksforgeeks.org/wp-content/uploads/CircularSinglyLinkedList.png" alt="" />
-      <p>У вузлах списку можуть зберігатись будь-які об'єкти, використані узагальнені типи (Generic). Для списку використаний патерн <b>Iterator</b></p>
+      <p>У вузлах списку можуть зберігатись будь-які об'єкти, використані узагальнені типи (Generic). Для списку використаний патерн <b>Iterator</b>.</p>
       <p>Реалізовані операції:</p>
       <ul style="margin-top: 5px;">
         <li>AddToEnd</li>
@@ -69,7 +69,7 @@
       <h2 style="text-align: center; margin-top: 15px;">Червоно-чорне дерево</h2>
       <img style="width: 100%; margin-bottom: 10px;" src="https://www.geeksforgeeks.org/wp-content/uploads/RedBlackTree.png" alt="" />
       <p>У вузлах дерева можуть зберігатись будь-які об'єкти, використані узагальнені типи (Generic). Для цього дерева використаний патерн
-      <b>Iterator</b><p>
+      <b>Iterator</b>.<p>
       <p>Реалізовані операції:</p>
       <ul style="margin-top: 5px;">
         <li>Add</li>
@@ -97,7 +97,7 @@
       />
       <p>У вузлах дерева можуть зберігатись ключі та значення будь-яких типів, використані узагальнені типи (Generic). Для цього дерева використані
       патерни
-      <b>Iterator</b> та <b>Builder</b></p>
+      <b>Iterator</b> та <b>Builder</b>.</p>
       <p>Реалізовані операції:</p>
       <ul style="margin-top: 5px;">
         <li>Add</li>
