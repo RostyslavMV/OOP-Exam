@@ -209,7 +209,6 @@
     <Content Include="HTML\RB.html" />
     <Content Include="HTML\Set.html" />
     <Content Include="HTML\SortAlgos.html" />
-    <Content Include="HTML\Test.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

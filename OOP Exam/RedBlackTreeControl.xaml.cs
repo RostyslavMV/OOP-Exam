@@ -92,7 +92,8 @@ namespace OOP_Exam
             MainWindow.mainWindow.StartMethod("Червоно-чорне дерево, пошук елемента");
             await Task.Run(() =>
             {
-                if (MainWindow.mainWindow.RedBlackTree.Search(new CloudStorage(personName, providerName, catalogName)) != null)
+                var searchResult = MainWindow.mainWindow.RedBlackTree.Search(new CloudStorage(personName, providerName, catalogName));
+                if ( searchResult != null && searchResult.Data.CompanyProvider.Name == providerName && searchResult.Data.Catalog.Name == catalogName)
                 {
                     Dispatcher.Invoke(() => SearchResult.Text = "Знайдено");
                 }
