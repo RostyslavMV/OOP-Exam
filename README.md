@@ -194,7 +194,7 @@
   <body>
     <div>
       <h2 style="text-align: center; margin-top: 15px;">Контейнер</h2>
-      <img style="width: 100%; margin-bottom: 10px;" src="https://media.geeksforgeeks.org/wp-content/uploads/CircularSinglyLinkedList.png" alt="" />
+      <img style="width: 100%; margin-bottom: 10px;" src="https://www.mathworks.com/help/matlab/matlab_prog/mapobj_figure1.png" alt="" />
       У контейнері можуть зберігатись ключі та значення будь-яких типів, використані узагальнені типи (Generic). Контейнер може бути свторений на
       основі червоно-чорного дерева, В+ дерева, циклічного однозв'язного списку, хеш-таблиць відкритої адресації та хеш-таблиць методу ланцюжків.
       <p>Реалізовані операції:</p>
